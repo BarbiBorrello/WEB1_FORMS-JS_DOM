@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTOFOCUS</title>
+
+    <style>
+        input:focus {
+            border: 5px solid red;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>El atributo de enfoque automático</h3>
+
+    <p>El atributo autofocus especifica que un campo de entrada debe enfocarse automáticamente cuando se carga la
+        página.</p>
+    <p>Ejemplo <br>
+        Deje que el campo de entrada "Nombre" se enfoque automáticamente cuando se cargue la página:</p>
+
+    <form action="/action_page.php">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" autofocus><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

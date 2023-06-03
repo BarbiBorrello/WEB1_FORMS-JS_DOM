@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expresiones JavaScript</title>
+</head>
+
+<body>
+
+    <h3> CALCULAR VALOR</h3>
+
+    <p id="demo"></p>
+
+    <script>
+        document.getElementById("demo").innerHTML = 5 * 10;
+    </script>
+
+    <p> 5*10</p>
+
+    <hr>
+
+    <h3>Las expresiones también pueden contener valores de variables:</h3>
+
+    <p id="demo2"></p>
+
+    <script>
+        var x;
+        x = 5;
+        document.getElementById("demo2").innerHTML = x * 10;
+    </script>
+
+    <p>
+        var x; <br>
+        x = 5;
+    </p>
+
+    <hr>
+
+    <h3>Los valores pueden ser de varios tipos, como números y cadenas.</h3>
+
+    <p>Por ejemplo, "John" + " " + "Doe", se evalúa como "John Doe":</p>
+
+    <p id="demo3"></p>
+
+    <script>
+        document.getElementById("demo3").innerHTML = "John" + " " + "Doe";
+    </script>
+
+    <p>"John" + " " + "Doe"</p>
+
+
+
+</body>
+
+</html>

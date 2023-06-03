@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATTERN /PATRON</title>
+</head>
+
+<body>
+
+    <h3>El atributo del patrón</h3>
+
+    <p>El atributo pattern especifica una expresión regular con la que se comprueba el valor del campo de entrada cuando
+        se envía el formulario. <br> <br>
+
+        El patternatributo funciona con los siguientes tipos de entrada: texto, fecha, búsqueda, URL, teléfono, correo
+        electrónico y contraseña. <br> <br>
+
+        Sugerencia: use el atributo de título global para describir el patrón para ayudar al usuario. <br> <br>
+
+        Sugerencia: obtenga más información sobre las expresiones regulares en nuestro tutorial de JavaScript. <br></p>
+
+    <hr>
+    <form action="/action_page.php">
+        <label for="country_code">Country code:</label>
+        <input type="text" id="country_code" name="country_code" pattern="[A-Za-z]{3}"
+            title="Three letter country code"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <hr>
+
+    Código de país: <input type="text" name="country_code" pattern="[A-Za-z]{3}" title="Tres letras"> <br>  <input type="submit" value="Submit">
+
+</body>
+
+</html>

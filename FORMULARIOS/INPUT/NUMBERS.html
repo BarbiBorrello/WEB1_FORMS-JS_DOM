@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número de tipo de entrada</title>
+</head>
+
+<body>
+
+    <h3>Número de tipo de entrada</h3>
+
+    <p> input type="number" un campo de entrada numérico . <br> <br>
+
+        También puede establecer restricciones sobre qué números se aceptan. <br> <br>
+
+        El siguiente ejemplo muestra un campo de entrada numérico, donde puede ingresar un valor del 1 al 5:</p>
+    <br>
+
+    <p>
+        Puede usar los atributos mínimo y máximo para agregar restricciones numéricas en el campo de entrada </p>
+
+    <form action="/action_page.php">
+        <label for="quantity">Cantidad (entre 1 y 5)::</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="5">
+        <input type="submit" value="Submit">
+    </form>
+
+    <hr>
+
+    <p>El siguiente ejemplo muestra un campo de entrada numérico, donde puede ingresar un valor de 0 a 100, en pasos de
+        10. El valor predeterminado es 30:</p>
+
+
+    <form action="/action_page.php">
+        <label for="quantity">Cantidad:</label>
+        <input type="number" id="quantity" name="quantity" min="0" max="100" step="10" value="30">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

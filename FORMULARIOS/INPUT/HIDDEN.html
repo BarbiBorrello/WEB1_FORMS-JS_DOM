@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INPUT TYPE FILE</title>
+</head>
+
+<body>
+
+    <h3>Tipo de entrada oculto</h3>
+
+    <p> input type="hidden" un campo de entrada oculto (no visible para un usuario). <br> <br>
+
+        Un campo oculto permite a los desarrolladores web incluir datos que los usuarios no pueden ver ni modificar
+        cuando se envía un formulario. <br> <br>
+
+        Un campo oculto a menudo almacena qué registro de la base de datos debe actualizarse cuando se envía el
+        formulario. <br> <br>
+
+        Nota: Si bien el valor no se muestra al usuario en el contenido de la página, es visible (y se puede editar)
+        utilizando las herramientas de desarrollo de cualquier navegador o la función "Ver código fuente". ¡No utilice
+        entradas ocultas como una forma de seguridad!</p> <br>
+
+    <form action="/action_page.php">
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <input type="hidden" id="custId" name="custId" value="3487"> <!--CAMPO OCULTO-->
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+
+</html>

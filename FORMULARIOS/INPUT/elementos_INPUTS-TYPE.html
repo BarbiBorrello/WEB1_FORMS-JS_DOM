@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inputs</title>
+
+    <style>
+        #mensaje {
+
+
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="">
+
+        <!--TEXTO-->
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value=""><br>
+
+        <label for="apellido">Apellido:</label><br>
+        <input type="text" id="lname" name="lname" value=""><br><br>
+
+        <label for="mensaje"> Mensaje</label> <br>
+        <input type="text" id="mensaje" name="mensaje" rospan="3"
+            value="Muestra un campo de entrada de texto de una sola línea"> <br>
+
+        <hr>
+
+        <!--RADIO BUTON-->
+
+        <p>Los botones de opción permiten al usuario seleccionar UNA de un número limitado de opciones.</p>
+
+        <input type="radio" id="html" name="fav_language" value="HTML">
+        <label for="html">HTML</label><br>
+        <input type="radio" id="css" name="fav_language" value="CSS">
+        <label for="css">CSS</label><br>
+        <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+        <label for="javascript">JavaScript</label> <br>
+        <input type="submit" value="Enviar"> <br>
+        <hr>
+
+        <!--CHECK BOX-->
+
+        <p>Las casillas de verificación permiten a un usuario seleccionar CERO o MÁS opciones de un número limitado de
+            opciones.</p>
+
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+        <label for="vehicle1"> I have a bike</label><br>
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+        <label for="vehicle2"> I have a car</label><br>
+        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+        <label for="vehicle3"> I have a boat</label> <br>
+        <input type="submit" value="Enviar"> <br>
+
+        <hr>
+            <!--CONTRASEÑA-->
+
+        <h3>Tipo de entrada Contraseña</h3>
+
+        <form action="/action_page.php">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="pwd">Password:</label><br>
+            <input type="password" id="pwd" name="pwd"><br><br>
+            <input type="submit" value="Submit">
+          </form>
+
+        <hr>
+
+        <!--RESET-->
+
+        <h3>Restablecimiento del tipo de entrada</h3>
+
+        <p> type="reset" define un botón de reinicio que restablecerá todos los valores del formulario a sus valores predeterminados:</p>
+
+        <form action="/action_page.php">
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="John"><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="Doe"><br><br>
+            <input type="submit" value="Submit">
+            <input type="reset">
+          </form> 
+
+          <hr>
+
+           <!--BUTON-->
+
+           <h3>Botón de tipo de entrada</h3>
+
+           <p> type="button" define un botón :</p>
+
+           
+        <input type="button" onclick="alert('Hello World!')" value="Click Me!">
+
+           <hr>
+        
+
+
+    </form>
+
+    <form action="/registrardatos.php" method="post">
+        Ingrese su nombre: <input type="text" name="nombre" size="30"><br>
+        Seleccione los lenguajes que conoce: <br>
+        <input type="checkbox" name="java">Java<br>
+        <input type="checkbox" name="cmasmas">C++<br>
+        <input type="checkbox" name="c">C<br>
+        <input type="checkbox" name="csharp">C#<br>
+        <input type="submit" value="Enviar">
+        </form>
+
+    <hr>
+
+    
+
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIZE - </title>
+    <style>
+        label,
+        input {
+            display: block;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <h3>El atributo de tamaño</h3>
+
+    <p>El atributo size especifica el ancho visible, en caracteres, de un campo de entrada. <br>
+
+        El valor predeterminado para sizees 20. <br>
+        Nota: el sizeatributo funciona con los siguientes tipos de entrada: texto, búsqueda, teléfono, URL, correo
+        electrónico y contraseña
+
+    </p> <br>
+
+
+    <h3> El atributo maxlength</h3> <br>
+
+    <p>El atributo maxlength especifica el número máximo de caracteres permitidos en un campo de entrada. <br> <br>
+
+    Nota: Cuando se establece a maxlength, el campo de entrada no aceptará más que el número de caracteres especificado. <br> Sin embargo, este atributo no proporciona ningún comentario. Entonces, si desea alertar al usuario, debe escribir código JavaScript.</p> 
+
+    <hr>
+    Confeccionaremos un formulario que solicite el nombre de usuario y su clave y solo permitiremos ingresar nombres de
+    usuarios de hasta 20 caracteres y claves de hasta 12. <br>
+    <hr>
+    <form action="/registrardatos.php" method="post">
+        Ingrese su nombre: <input type="text" name="nombre" maxlength="20" size="20">
+        <br>
+        Ingrese su clave: <input type="password" name="clave" maxlength="12" size="12">
+        <br>
+        <input type="submit" value="enviar">
+    </form>
+
+</body>
+
+</html>

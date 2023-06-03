@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arreglos</title>
+</head>
+
+<body>
+
+    <h1> Arreglos/Vector/Arrays/Matrices</h1>
+
+    <script>
+        var amigos = ["Carlos", "Cesar", "Alex"];
+
+        // acceder al arreglo por posicion:
+
+        document.write(amigos[1]);
+        document.write(amigos[10]); // undefined 
+
+        // modificar valores:
+
+        amigos[0] = "Arturo";
+        amigos[2] = "Barbara"
+
+
+
+
+    </script>
+
+    <p>
+
+        var amigos = ["Carlos", "Cesar", "Alex"] <br>
+
+        // acceder al arreglo por posicion: br
+
+        document.write(amigos[1]); <br>
+        document.write(amigos[10]); // undefined <br>
+
+        // modificar valores: <br>
+
+        amigos[0]="Arturo";<br>
+        amigos[2]="Barbara"<br>
+
+    </p>
+
+    <hr>
+
+    <h1> Metodos y propiedades para los Arreglos</h1>
+
+    <p>
+        1) lenght : numero de elementos / agregar elementos. <br> 
+        2) push : agregar elementos. <br>
+        3) pop: eliminar elementos. <br>
+        4) concat : unir arreglos. <br>
+        5) join : separar con caracteres elementos, en una misma linea. <br>
+        6) sort : ordenar elementos alfabeticamente. <br>
+
+
+
+
+
+
+    </p>
+
+    <script>
+
+        var comidas = ["milanesa", "pizza", "fideos", "helado"];
+
+        // NUMEROS DE ELEMENTOS---------------------------------------------
+
+
+        //document.write(comidas.lengt); // NUMERO X PAGINA
+
+        document.write("Mis comidas favoritas son " + comidas.length); // CADENA POR PAGINA
+        comidas.length; // POR CONSOLA
+
+        // AGREGAR ELEMENTOS-----------------------------------------------
+
+        comidas[comidas.length] = "torta";
+        // se accede a la ultima posicion y se agrega al final de la lista
+
+        comidas.push("lemon pie", "fideos", "papas fritas");
+        // los agrega el final de la lista
+
+        //ELIMINAR ELEMENTOS-----------------------------------------
+
+        comidas.pop();
+        // eliminar el ultimo elemento
+
+        //UNIR DOS ARREGLOS--------------------------------------------
+
+        var comidas2 = ["papa", "lechuga", "cebolla", "tomate"];
+        
+
+        var comidas3 = comidas.concat(comidas2);
+        document.write(comidas3);
+
+        // SEPARAR ELEMENTOS----------------------------------------
+
+        // var comida2 = comidas2.join("|");
+        document.write(comidas2.join("|"));
+
+        //ORDENAR ELEMENTOS------------------------------------------
+
+        var ordenados = comidas.sort();
+        document.write(ordenados); // alfabeticamente
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

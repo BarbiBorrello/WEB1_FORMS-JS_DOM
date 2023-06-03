@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INPUT TYPE DATE</title>
+</head>
+
+<body>
+
+    <h3>Tipo de entrada Fecha</h3>
+
+    <p> type="date" utiliza para campos de entrada que deben contener una fecha. <br>
+
+        Dependiendo de la compatibilidad del navegador, puede aparecer un selector de fecha en el campo de entrada.</p>
+
+    <p>El <strong>tipo de entrada="fecha"</strong> se usa para campos de entrada que deben contener una fecha.</p>
+
+    <form action="/action_page.php">
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday">
+        <input type="submit" value="Submit">
+    </form> <br>
+
+    <p>También puede usar los atributos miny maxpara agregar restricciones a las fechas:</p>
+
+    <form action="/action_page.php">
+        <label for="datemin">Introduzca una fecha posterior a 2000-01-01:</label>
+        <input type="date" id="datemin" name="datemin" min="2000-01-02"><br><br>
+      
+        <label for="datemax">Introduzca una fecha anterior a 1980-01-01:</label>
+        <input type="date" id="datemax" name="datemax" max="1979-12-31"><br><br>
+        
+        <input type="submit" value="Submit">
+      </form>
+
+
+
+
+</body>
+
+</html>

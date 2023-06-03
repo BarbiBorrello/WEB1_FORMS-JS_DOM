@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rango de tipo de entrada</title>
+</head>
+
+<body>
+
+    <h3>Rango de tipo de entrada</h3>
+
+    <p> input type="range" un control para ingresar un número cuyo valor exacto no es importante (como un control
+        deslizante). <br>
+        El rango predeterminado es de 0 a 100. Sin embargo, puede establecer restricciones sobre qué números se aceptan
+        con los atributos min, maxy :step</p>
+
+    <p>Dependiendo de la compatibilidad del navegador: el tipo de entrada "rango" se puede mostrar como un control deslizante.</p>
+
+    <form action="/action_page.php" method="get">
+        <label for="vol">Volumen (entre 0 y 50):</label>
+        <input type="range" id="vol" name="vol" min="0" max="50">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

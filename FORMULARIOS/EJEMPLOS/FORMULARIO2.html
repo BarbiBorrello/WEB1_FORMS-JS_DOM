@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMULARIO 2</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script defer src="FORMULARIO2.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <div class="titulos"> <img class="img-titulo" src="img/Logo_negro.jpg" alt=""> Contactanos<img class="img-titulo"
+                src="img/Logo_negro.jpg" alt=""></div>
+                
+    </div>
+ <!-------------------------------------------------------------------------------------------------------------------------->
+    <div class="titulos">
+
+         <h3>¡Envíanos un mensaje ahora!</h3>
+    </div>
+    <!-- FORMULARIO-->
+
+    <form onsubmit="return validar()" id="f_contacto">
+    <!-- RETORNA: FUNCION VALIDAR-->    
+
+
+        <label for="f_nombre">Nombre</label>
+        <input id="f_nombre" autofocus />   <!-- FOCO: 1° CAMPO DEL FORMULARIO-->    
+
+        <label for="f_email">Email</label>
+        <input id="f_email" />
+
+        <label for="f_mensaje">Mensaje</label>
+        <textarea id="f_mensaje" rows="3"></textarea> <!-- OCUPA 3 FILAS-->
+
+        <label for="f_humano"><input id="f_humano" type="checkbox" value="1" /> Soy un humano</label>
+
+        <button type="submit">Enviar</button>
+        
+        
+        <div id="errores"></div> 
+    
+    </form>
+
+  
+      <div id="mensajes"> </div> <!-- CARGA DE DATOS CORRECTA /POR FUERA DEL FORMULARIO-->
+
+
+
+ <!-------------------------------------------------------------------------------------------------------------------------->
+
+ <div class="home"> <a class="enlace" href="index.html"><img src="img/Icono_Home.jpg" alt=""> <span>Volver a pagina
+    Principal</span> </a>
+
+
+</div>
+
+<div class="redes-sociales"> Síguenos en las redes sociales
+<div id="logos-redes-sociales">
+<div> <a href="https://www.facebook.com/CookingDiaryMYTONA" target="_blank"> <img
+            src="./img/Logo_facebook.jpg"></img> </a> </div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div> <a href="https://www.instagram.com/cookingdiary_official/" target="_blank"> <img
+            src="./img/Logo_instagram.jpg"></img> </a> </div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div> <a href="https://twitter.com/cookingdiary" target="_blank"> <img src="./img/Logo_titwer.jpg" alt="">
+        </img> </a> </div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div> <a href="https://www.youtube.com/channel/UC_4hNXHvg5xwDy4qDSsi83w" target="_blank"> <img
+            src="./img/Logo_youtube.jpg" alt=""> </img> </a> </div>
+
+</div>
+</div>
+
+<footer class="footer">
+<p> <span>Autor: Barbara Borrello</span><br>
+<a href="babiborrello@gmail.com">babiborrello@gmail.com</a>
+</p>
+</footer>
+</div>
+
+</body>
+
+</html>

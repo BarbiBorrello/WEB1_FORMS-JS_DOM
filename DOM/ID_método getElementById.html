@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> EJEMPLO : document.getElementById(id)</title>
+</head>
+
+<body>
+
+    
+
+    <h3> cambia de color el parrafo</h3> <br>
+    <h3> cambia el idioma de los botones</h3> <br>
+
+
+    <p id="para">EJEMPLO : document.getElementById(id)</p>
+    <button id="blue" onclick="changeColor('blue');">blue</button>
+    <button id="red" onclick="changeColor('red');">red</button>
+
+    <script>
+        function changeColor(newColor) {
+            const elem = document.getElementById("para");
+            elem.style.color = newColor;
+        }
+
+    document.getElementById("blue").innerHTML = "azul";
+    document.getElementById("red").innerHTML = "rojo";
+
+    </script>
+
+
+
+</body>
+
+</html>

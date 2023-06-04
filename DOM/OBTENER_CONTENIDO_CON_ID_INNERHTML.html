@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Obtenga el contenido HTML de un elemento con id</title>
+</head>
+<body>
+
+    <h3>Obtenga el contenido HTML de un elemento con id</h3>
+
+    <p id="miParrafo">Este es mi parrafo</p>
+
+    <p>Mi parrrado dice :</p>
+    
+    <p id="demo"></p>
+
+<script>
+let html = document.getElementById("miParrafo").innerHTML;
+document.getElementById("demo").innerHTML = html;
+</script>
+    
+</body>
+</html>

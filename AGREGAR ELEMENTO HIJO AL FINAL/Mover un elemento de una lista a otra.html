@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<ul id="myList1">
+  <li>Coffee</li>
+  <li>Tea</li>
+</ul>
+<ul id="myList2">
+  <li>Water</li>
+  <li>Milk</li>
+</ul>
+
+<p>Haga clic en "Mover" para mover un elemento de una lista a otra:</p>
+
+<button onclick="myFunction()">Move</button>
+
+<script>
+function myFunction() {
+  const node = document.getElementById("myList2").lastElementChild;
+  document.getElementById("myList1").appendChild(node);
+}
+</script>

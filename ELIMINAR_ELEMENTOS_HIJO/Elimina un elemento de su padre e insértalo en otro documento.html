@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 id="myH1">The Element Object</h1>
+<h2>The removeChild() Method</h2>
+
+<iframe src="/default.asp" style="height:400px;width:650px;"></iframe>
+
+<p>Haga clic en los botones para eliminar el h1 de su padre e insertarlo en el otro documento.</p>
+
+<button onclick="remove()">Remove</button>
+<button onclick="insert()">Insert</button>
+
+<script>
+const child = document.getElementById("myH1");
+
+function remove() {
+  child.parentNode.removeChild(child);
+}
+
+function insert() {
+  const frame = document.getElementsByTagName("IFRAME")[0]
+  const h = frame.contentWindow.document.getElementsByTagName("H1")[0];
+  const x = document.adoptNode(child);
+  h.appendChild(x);
+}
+</script>
+
+</body>
+</html>

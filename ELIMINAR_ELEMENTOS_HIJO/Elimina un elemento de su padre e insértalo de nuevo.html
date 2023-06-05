@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>The Element Object</h1>
+<h2>The removeChild() Method</h2>
+
+<p>Haga clic en los botones para quitar e insertar el elemento li del elemento ul:</p>
+<button onclick="removeLi()">Remove</button>
+<button onclick="appendLi()">Insert</button>
+
+<ul id="myList">
+  <li id="myLI">Coffee</li>
+</ul>
+
+<script>
+const element = document.getElementById("myLI");
+
+function removeLi() {
+  element.parentNode.removeChild(element);
+}
+function appendLi() {
+  const list = document.getElementById("myList");
+  list.appendChild(element);
+}
+</script>
+
+</body>
+</html>

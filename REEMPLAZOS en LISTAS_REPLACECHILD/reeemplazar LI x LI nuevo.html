@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<ul id="myList">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<p>Haga clic en el botón para reemplazar el primer elemento de la lista.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+  const element = document.createElement("li");
+  const textNode = document.createTextNode("Water");
+  element.appendChild(textNode);
+
+  const list = document.getElementById("myList");
+  list.replaceChild(element, list.children[0]);
+}
+</script>
+
+</body>
+</html>

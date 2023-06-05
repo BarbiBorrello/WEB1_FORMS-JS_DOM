@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<ul id="myList">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<p>Haga clic en "Reemplazar" para reemplazar el primer elemento de la lista</p>
+
+<button onclick="myFunction()">"Replace"</button>
+
+<p>This example replaces the Text node "Coffee" with a Text node "Water". Replacing the entire li element is also an alternative.</p>
+
+<script>
+function myFunction() {
+// Seleccione el primer elemento secundario:
+const element = document.getElementById("myList").children[0];
+
+// Crear un nuevo nodo de texto:
+const newNode = document.createTextNode("Water");
+
+// Reemplace el nodo de texto:
+element.replaceChild(newNode, element.childNodes[0]);
+}
+</script>
+
+</body>
+</html>

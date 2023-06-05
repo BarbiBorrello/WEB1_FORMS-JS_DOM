@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>The Element Object</h1>
+<h2>The removeChild() Method</h2>
+
+<p>Eliminar todos los nodos secundarios de una lista:</p>
+<button onclick="myFunction()">Remove</button>
+
+<ul id="myList">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<script>
+function myFunction() {
+  const list = document.getElementById("myList");
+  while (list.hasChildNodes()) {
+    list.removeChild(list.firstChild);
+  }
+}
+</script>
+
+</body>
+</html>

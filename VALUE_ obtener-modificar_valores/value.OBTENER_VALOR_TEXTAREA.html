@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+Address:<br>
+<textarea id="myTextarea">
+342 Alvin Road
+Ducksburg</textarea>
+
+<p>Haga clic en el botón para alertar sobre el contenido del área de texto.</p>
+
+<p>  let x = document.getElementById("myTextarea").value; <br>
+    document.getElementById("demo").innerHTML = x;</p>
+
+<button type="button" onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  let x = document.getElementById("myTextarea").value;
+  document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validacion Diapositiva</title>
+</head>
+
+<body>
+
+    <p>Se puede acceder a los elementos a través del 
+        formulario o directamente a los elementos.</p>
+
+    …
+    <form id="demo" name="demo">
+        <label>Nº</label> <input id="nro" name="nro" />
+    </form>
+    …
+    <script type="text/javascript">
+        let frm = document.demo;
+        let frmBis = document.forms["demo"];
+        let elemNro = frm["nro"];//también frm.nro
+    </script>
+
+
+</body>
+
+</html>

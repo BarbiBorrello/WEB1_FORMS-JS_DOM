@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>El método removeChild()</h2>
+
+<p>Haga clic en "Eliminar" para eliminar el primer elemento de la lista:</p>
+<button onclick="myFunction()">Remove</button>
+
+<ul id="myList">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<script>
+function myFunction() {
+  const list = document.getElementById("myList");
+  list.removeChild(list.firstElementChild);
+}
+</script>
+
+</body>
+</html>

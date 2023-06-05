@@ -82,29 +82,42 @@
 
     <script>
 
-        let primero = document.querySelector("form input");
-        primero.focus();
-        let reg_correo = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
+        let primero = document.querySelector("form input");  // FOCO EN EL PRIMER ELEMENTO
+        primero.focus(); // FOCO EN EL PRIMER ELEMENTO
+        let reg_correo = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/; //PATRON
 
         function validar() {
-            let f_nombre = document.querySelector("#f_nombre");
-            f_nombre.classList.remove("error");
+            //VARIABLES //
+            let f_nombre = document.querySelector("#f_nombre"); // recupero elemento
+            f_nombre.classList.remove("error"); // si esta ok remuevo error?
+
             let f_mensaje = document.querySelector("#f_mensaje");
             f_mensaje.classList.remove("error");
+
             let f_email = document.querySelector("#f_email");
             f_email.classList.remove("error");
-            let lta_errores = document.querySelector("#errores");
-            lta_errores.innerHTML = "";
-            lta_errores.style.display = "none";
-            let lta_mensajes = document.querySelector("#mensajes");
-            let hubo_error = false;
+
+            let lta_errores = document.querySelector("#errores"); // recupero errores
+            lta_errores.innerHTML = ""; // la lista de errores comiezo vacia
+
+            lta_errores.style.display = "none"; // lista de errores escondida
+
+            let lta_mensajes = document.querySelector("#mensajes"); //lista de ambos tipos de mensajes
+            let hubo_error = false; // si hay error  no se envia
+
+
+
+//VALIDACON NOMBRE//
             if (f_nombre.value == "") {
                 f_nombre.classList.add("error");
-                let p = document.createElement("p");
-                p.innerHTML = "Falta el nombre";
-                lta_errores.appendChild(p);
-                hubo_error = true;
+                let p = document.createElement("p"); // crear mensaje
+                p.innerHTML = "Falta el nombre"; // contenido del mensaje
+                lta_errores.appendChild(p); // agregar a la lista de errores
+                hubo_error = true; // si hay error
             }
+
+
+//VALIDACON MENSAJES//            
             if (f_mensaje.value == "") {
                 f_mensaje.classList.add("error");
                 let p = document.createElement("p");
@@ -117,6 +130,9 @@
                 p.innerHTML = "Longitud máxima del mensaje: 200";
                 lta_errores.appendChild(p);
                 hubo_error = true;
+
+
+//VALIDACON MAIL// 
             }
             if (f_email.value != "" && !reg_correo.test(f_email.value)) {
                 //if(!/^([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)?$/.test(f_email.value)){
@@ -126,10 +142,13 @@
                 lta_errores.appendChild(p);
                 hubo_error = true;
             }
+
+
+//VALIDACON MENSAJES DE ERRROR Y  OK// 
             if (hubo_error) {//
                 lta_errores.style.display = "initial";
-                return false;
-            } else {
+                return false; // si hay error se vuelve al comienzo para cargar datos de nuevo
+            } else { // sino
                 let p = document.createElement("p");
                 if (f_email.value != "") {
                     p.innerHTML =
@@ -141,11 +160,19 @@
                         f_nombre.value + " dice " +
                         f_mensaje.value + ".";
                 }
+
+
                 lta_mensajes.appendChild(p);
-                document.forms["f_contacto"].reset();
+
+                document.forms["f_contacto"].reset(); // se resetea formulario para hacer una nueva carga de datos.
+
+
+                 // foco en el primer elemento
                 let primero = document.querySelector("form input");
-                primero.focus();
+                primero.focus(); 
             }
+
+
             return false;
         }
 

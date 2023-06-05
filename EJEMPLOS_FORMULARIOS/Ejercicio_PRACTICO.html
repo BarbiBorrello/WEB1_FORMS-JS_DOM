@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parcial Web I</title>
+
+    <script>
+        function ValidacionForm() {
+            if (
+                validarNombre() &&
+                validarDomicilio() &&
+                validarcodigoPostal() &&
+                validarEspecialidad()
+            ) {
+                if (confirm("Datos correctos, desea enviar formulario?")) {
+                    alert("Gracias por completar el formulario");
+                    return true;
+                } else {
+                    alert("Formulario no enviado");
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+
+        function validarNombre() {
+            let nombre = document.getElementById("nombre").value;
+            if (nombre.length > 30) {
+                alert("El campo nombre no puede tener mas de 30 caracteres");
+                cambioColor("nombre");
+                return false;
+            } else if (nombre == "") {
+                alert("El campo nombre no puede estar vacio");
+                cambioColor("nombre");
+                return false;
+            }
+            return true;
+        }
+
+
+        function validarDomicilio() {
+            let domicilio = document.getElementById("domicilio").value;
+            if (domicilio.length > 50) {
+                alert("El campo domicilio no puede tener mas de 50 caracteres");
+                cambioColor("domicilio");
+                return false;
+            } else if (domicilio == "") {
+                alert("El campo domicilio no puede estar vacio");
+                cambioColor("domicilio");
+                return false;
+            }
+            return true;
+        }
+
+
+        function validarcodigoPostal() {
+            let codigoPostal = document.getElementById("codigoPostal").value;
+            if (!isNaN(codigoPostal)) {
+                if (codigoPostal.length != 4) {
+                    alert("El campo codigo postal tiene que ser de 4 digitos");
+                    cambioColor("codigoPostal");
+                    return false;
+                }
+            } else {
+                alert("El campo codigo postal debe ser un numero");
+                cambioColor("codigoPostal");
+                return false;
+            }
+            return true;
+        }
+
+
+        function validarEspecialidad() {
+            let especialidad = document.getElementsByName("especialidad");
+            let especialidadSeleccionada = false;
+            for (let i = 0; i < especialidad.length; i++) {
+                if (especialidad[i].checked) {
+                    especialidadSeleccionada = true;
+                    return true;
+                }
+            }
+            if (!especialidadSeleccionada) {
+                alert("Debe seleccionar una especialidad");
+                cambiarDivEspecialida();
+                return false;
+            }
+        }
+
+
+        function cambioColor(valor) {
+            document.getElementById(valor).focus();
+            document.getElementById(valor).style.backgroundColor = "#ff6666";
+            document.getElementById(valor).style.border = "5px solid #ffaaaa";
+            document.getElementById(valor).style.color = "white";
+        }
+
+
+        function cambiarDivEspecialida() {
+            document.getElementById("especialidades").style.backgroundColor =
+                "#ff6666";
+            document.getElementById("especialidades").style.border =
+                "5px solid #ffaaaa";
+            document.getElementById("focus_si_falla").focus();
+        }
+
+
+    </script>
+
+    <style>
+        * {
+            font-family: "Roboto", sans-serif;
+            color: #fff;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a;
+        }
+
+        form {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            background-color: #797979;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .especialidades {
+            display: grid;
+            grid-template-columns: auto auto;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+
+        input {
+            background-color: #00e1ff;
+            color: black;
+            font-weight: bold;
+        }
+
+        h1,
+        h2 {
+            border-bottom: 1px solid #fff;
+            border-radius: 10px;
+            padding-left: 100px;
+            padding-bottom: 20px;
+            padding-right: 100px;
+        }
+
+        .enunciado {
+            border: 1px solid #fff;
+            padding: 2%;
+        }
+
+        hr {
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Examen Practico Web I </h1>
+    <h2>Crear un formulario que permita cargar los siguientes datos:</h2>
+    <br />
+
+    <!------ CONSIGNAS --------------------------------------------------------------------------------------------->
+    <div class="enunciado">
+        <ol>
+            <li>Nombre (obligatorio, máximo 30 caracteres).</li>
+            <li>Domicilio (obligatorio, máximo 50 caracteres).</li>
+            <li>Código Postal (obligatorio, numérico y de sólo 4 dígitos).</li>
+            <li>
+                Especialidad (obligatorio, al menos una opción seleccionada), checkbox
+                con las siguientes opciones:
+            </li>
+            <ul>
+                <li>Base de Datos.</li>
+                <li>Diseño Gráfico.</li>
+                <li>Redes.</li>
+                <li>Programación.</li>
+            </ul>
+            <li>Dar estilo personal al formulario.</li>
+            <ul>
+                <li>Colocar color de fondo al formulario y a los input.</li>
+                <li>El formulario debe ocupar la mitad del ancho de la página.</li>
+                <li>
+                    El formulario debe estar centrado horizontalmente en la página.
+                </li>
+                <li>El formulario debe tener los bordes redondeados.</li>
+            </ul>
+            <li>Validar campos sólo con javascript.</li>
+            <li>
+                En caso de error, el formulario NO debe ser enviado y se debe cambiar
+                el estilo de los campos erróneos:
+            </li>
+            <ul>
+                <li>Colocar el cursor en el campo</li>
+                <li>Cambiar el color de fondo</li>
+                <li>Cambiar el borde</li>
+                <li>Cambiar el color de letra</li>
+                <li>Cualquier otro estilo que considere adecuado</li>
+            </ul>
+            <li>
+                En caso de no haber error, solicitar confirmación antes de enviar los
+                datos.
+            </li>
+            <li>
+                Si se confirma el envío, mostar un cartel que diga "Gracias por
+                completar el formulario" antes de enviar los datos.
+            </li>
+        </ol>
+    </div>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <br />
+
+    <!------ FORMULARIO--------------------------------------------------------------------------------------------->
+    <h2>Formulario</h2>
+    <br />
+    <form id="carga" action="#" method="get">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre" /> <br />
+        <label for="domicilio">Domicilio:</label>
+        <input type="text" name="domicilio" id="domicilio" /> <br />
+        <label for="codigoPostal">Código Postal:</label>
+        <input type="text" name="codigoPostal" id="codigoPostal" /> <br />
+        <label for="especialidad">Especialidad:</label> <br />
+        <div class="especialidades" id="especialidades">
+            <input type="checkbox" name="especialidad" value="Base de Datos" id="focus_si_falla" />Base de Datos
+            <input type="checkbox" name="especialidad" value="Diseño Gráfico" />Diseño Gráfico
+            <input type="checkbox" name="especialidad" value="Redes" />Redes
+            <input type="checkbox" name="especialidad" value="Programación" />Programación
+        </div>
+        <br />
+        <input type="submit" value="Enviar" onclick="return ValidacionForm();" />
+    </form>
+</body>
+
+</html>

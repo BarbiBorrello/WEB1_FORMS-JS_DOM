@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USUARIO Y CONTRASEÑA</title>
+</head>
+
+<body>
+    <form action="/login.php" id="formulario">
+        <p>
+            Usuario: <input type="text" name="usuario" id="usuario">
+        </p>
+        <p>
+            Clave: <input type="text" name="clave" id="clave">
+        </p>
+        <input type="submit" value="Entrar">
+    </form>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("formulario").addEventListener('submit', validarFormulario);
+        });
+
+        function validarFormulario(evento) {
+            evento.preventDefault();
+            let usuario = document.getElementById('usuario').value;
+            if (usuario.length == 0) {
+                alert('No has escrito nada en el usuario');
+                return;
+            }
+            let clave = document.getElementById('clave').value;
+            if (clave.length < 6) {
+                alert('La clave no es válida');
+                return;
+            }
+            this.submit();
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

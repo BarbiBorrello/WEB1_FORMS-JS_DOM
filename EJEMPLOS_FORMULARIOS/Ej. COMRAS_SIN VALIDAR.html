@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        form#pago {
+            margin: auto;
+            background: Green;
+            color: white;
+            font-size: 12px;
+            padding: 30px;
+            width: 350px;
+            border: solid 10px LightSteelBlue;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+        }
+
+        form#pago fieldset {
+            border: none;
+        }
+
+        form#pago input {
+            font-size: 12px;
+            background: yellow;
+            border: solid 1px Green;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            float: right;
+            margin-right: 15px;
+            width: 200px;
+        }
+
+        form#pago ol li {
+            line-height: 25px;
+            list-style: none;
+        }
+
+        form#pago [required] {
+            border: solid 1px red;
+        }
+
+        input:required {
+            outline: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="pago">
+
+
+        <fieldset>
+            <legend>Datos del comprador</legend>
+            <ol>
+                <li>
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" name="nombre" type="text" placeholder="Escribe tu nombre completo" required
+                        autofocus>
+                </li>
+                <li>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="ejemplo@um.es" required>
+                </li>
+                <li>
+                    <label for="telefono">Teléfono</label>
+                    <input id="telefono" name="telefono" type="tel" placeholder="Ej. +34668899999" required>
+                </li>
+                <li>
+                    <label for="pais">País</label>
+                    <input id="pais" name="pais" type="text" required>
+                </li>
+            </ol>
+        </fieldset>
+
+
+
+        <fieldset>
+            <legend>Datos de tarjeta de crédito o débito</legend>
+            <ol>
+                <li>
+                    <label for="numtarjeta">Número</label>
+                    <input id="numtarjeta" name="numtarjeta" type="number" placeholder="Ej. 5555-4444-3333-2222"
+                        required>
+                </li>
+                <li>
+                    <label for="nomtarjeta">Nombre</label>
+                    <input id="nomtarjeta" name="nomtarjeta" type="text" placeholder="Nombre que figura en la tarjeta"
+                        required>
+                </li>
+            </ol>
+        </fieldset>
+        -------------------------------------------------
+        <fieldset>
+            <button type="submit">Confirmar pedido</button>
+        </fieldset>
+    </form>
+
+    
+
+
+
+</body>
+
+</html>

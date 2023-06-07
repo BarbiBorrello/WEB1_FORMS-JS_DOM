@@ -5,8 +5,8 @@ let reg_correo = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
 function validar() {
 
     
- let f_nombre = document.querySelector("#f_nombre");
- f_nombre.classList.remove("error");
+ let f_nombrepeli = document.querySelector("#f_nombrepeli");
+ f_nombrepeli.classList.remove("error");
  let f_mensaje = document.querySelector("#f_mensaje");
  f_mensaje.classList.remove("error");
  let f_email = document.querySelector("#f_email");
@@ -20,8 +20,8 @@ function validar() {
  let hubo_error = false;
 
 
- if(f_nombre.value.trim() == "") {
-  f_nombre.classList.add("error");
+ if(f_nombrepeli.value.trim() == "") {
+  f_nombrepeli.classList.add("error");
   let p = document.createElement("p");
   p.innerHTML = "Falta el nombre";
   lta_errores.appendChild(p);
@@ -69,12 +69,12 @@ function validar() {
   let p = document.createElement("p");
   if(f_email.value != "") {
    p.innerHTML =  
-    f_nombre.value + " dice " + 
+    f_nombrepeli.value + " dice " + 
     f_mensaje.value + ". Contacto: " +
     f_email.value + ".";
   } else {
    p.innerHTML =  
-    f_nombre.value + " dice " + 
+    f_nombrepeli.value + " dice " + 
     f_mensaje.value + ".";
   }
   lta_mensajes.appendChild(p);

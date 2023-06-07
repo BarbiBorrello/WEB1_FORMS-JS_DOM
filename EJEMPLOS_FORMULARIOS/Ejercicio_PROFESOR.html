@@ -7,6 +7,41 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Nunito:ital,wght@1,200&family=Roboto:ital,wght@0,300;1,100;1,300&display=swap"
         rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Roboto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 30px;
+            margin: 10px;
+            border: 5px solid blue;
+            border-radius: 15px;
+        }
+
+        textarea {
+            border: 1px solid black;
+            border-radius: 0px 15px 0px 15px;
+        }
+
+        #errores {
+            border: 1px solid red;
+            padding: 5px;
+            display: none;
+        }
+
+        #errores p {
+            color: red;
+        }
+
+        .error {
+            border: 1px solid red;
+        }
+    </style>
 </head>
 <!--
     Crear un formulario con:
@@ -29,39 +64,39 @@
 <body>
     <h1>Ejercicio Simulacro</h1>
 
-<!---------------------------------------FORMULARIO----------------------------------------------------->    
+    <!---------------------------------------FORMULARIO----------------------------------------------------->
     <form onsubmit="return validar()" id="f_contacto">
 
 
-<!---------------------------------------Campo: NOMBRE ----------------------------------------------------->        
-      
+        <!---------------------------------------Campo: NOMBRE ----------------------------------------------------->
+
         <label for="f_nombre">Nombre</label>
         <input id="f_nombre" autofocus /> <!--FOCO PRIMER ELEMENTO-->
-    
-<!---------------------------------------Campo: MENSAJE ----------------------------------------------------->  
+
+        <!---------------------------------------Campo: MENSAJE ----------------------------------------------------->
 
         <label for="f_mensaje">Mensaje</label>
         <textarea id="f_mensaje" rows="3"></textarea>
 
-<!---------------------------------------Campo: EMAIL ----------------------------------------------------->          
+        <!---------------------------------------Campo: EMAIL ----------------------------------------------------->
         <label for="f_email">Email</label>
         <input id="f_email" />
 
-<!---------------------------------------Boton : ENVIAR ----------------------------------------------------->         
+        <!---------------------------------------Boton : ENVIAR ----------------------------------------------------->
         <button type="submit">Enviar</button>
 
-<!---------------------------------------ERRORES => LISTA DE ERRORES --------------------------------------->           
+        <!---------------------------------------ERRORES => LISTA DE ERRORES --------------------------------------->
         <div id="errores"> </div>
 
     </form>
-<!-------------------------------FIN DEL FORMULARIO-------------------------------------------------------->
+    <!-------------------------------FIN DEL FORMULARIO-------------------------------------------------------->
 
-<!---------------------------------------MENSAJES => "pagina dice.... "------------------------------------> 
+    <!---------------------------------------MENSAJES => "pagina dice.... "------------------------------------>
     <div id="mensajes"> </div>
 
 
 
-<!---------------------------------------JS------------------------------------------------------------->  
+    <!---------------------------------------JS------------------------------------------------------------->
 
     <script>
 
@@ -70,14 +105,14 @@
 
 
         let reg_correo = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/;
-         /*expresion regular para validar mail*/
+        /*expresion regular para validar mail*/
 
 
-/*---------------------------------------Funcion : VALIDAR -------------------------------------------------------------*/
+        /*---------------------------------------Funcion : VALIDAR -------------------------------------------------------------*/
         function validar() {
 
 
-/*---------------------------------------Variables : CAMPOS del FORMULARIO ---------------------------------------------*/
+            /*---------------------------------------Variables : CAMPOS del FORMULARIO ---------------------------------------------*/
 
 
             let f_nombre = document.querySelector("#f_nombre");
@@ -100,7 +135,7 @@
 
 
 
-/*---------------------------------------Validacion:  NOMBRE ---------------------------------------------*/
+            /*---------------------------------------Validacion:  NOMBRE ---------------------------------------------*/
 
             if (f_nombre.value == "") {
                 f_nombre.classList.add("error");
@@ -110,7 +145,7 @@
                 hubo_error = true;
             }
 
-/*---------------------------------------Validacion: MENSAJES ---------------------------------------------*/            
+            /*---------------------------------------Validacion: MENSAJES ---------------------------------------------*/
 
             if (f_mensaje.value == "") {
                 f_mensaje.classList.add("error");
@@ -127,10 +162,10 @@
             }
 
 
-/*---------------------------------------Validacion: MAIL ---------------------------------------------*/              
+            /*---------------------------------------Validacion: MAIL ---------------------------------------------*/
 
             if (f_email.value != "" && !reg_correo.test(f_email.value)) {
-       
+
                 f_email.classList.add("error");
                 let p = document.createElement("p");
                 p.innerHTML = "Email inválido";
@@ -138,7 +173,7 @@
                 hubo_error = true;
             }
 
-/*---------------------------------------MENSAJES: ERRORES Y CONFIRMACIONES ---------------------------------------------*/ 
+            /*---------------------------------------MENSAJES: ERRORES Y CONFIRMACIONES ---------------------------------------------*/
 
 
             if (hubo_error) {// SI hubo error
@@ -147,28 +182,28 @@
             } else { // NO hubo error
                 let p = document.createElement("p"); // se crea un parrafo
                 if (f_email.value != "") { // Si proveyó el email:
-                    p.innerHTML = 
+                    p.innerHTML =
                         f_nombre.value + " dice " + // Barbara dice.....
                         f_mensaje.value + ". Contacto: " + // Hola que tal...
                         f_email.value + "."; // Contacto : biborrello@hotmail.com 
-                }  else { // sino NO proveyo el email:
-                        p.innerHTML = 
+                } else { // sino NO proveyo el email:
+                    p.innerHTML =
                         f_nombre.value + " dice " + // Barbara dice.....
                         f_mensaje.value + "."; // Hola que tal...
                 }
 
-/*---------------------------------------mensajes : AGREGAR EN LISTA DE MENSAJES ------------------------------------*/
+                /*---------------------------------------mensajes : AGREGAR EN LISTA DE MENSAJES ------------------------------------*/
 
                 lta_mensajes.appendChild(p);
                 document.forms["f_contacto"].reset(); // RESETEAR FORMULARIO: para nueva carga de datos
 
-/*--------------------------------------- FOCUS: EN PRIMER ELEMENTO ------------------------------------*/
+                /*--------------------------------------- FOCUS: EN PRIMER ELEMENTO ------------------------------------*/
 
                 let primero = document.querySelector("form input");
                 primero.focus();
-           }
-            
-           return false;
+            }
+
+            return false;
         }
 
 

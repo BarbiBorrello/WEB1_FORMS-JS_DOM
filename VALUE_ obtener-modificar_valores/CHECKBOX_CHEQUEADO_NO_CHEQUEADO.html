@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-Checkbox: <input type="checkbox" id="myCheck">
+  Checkbox: <input type="checkbox" id="myCheck">
 
-<button onclick="check()">Check Checkbox</button>
-<button onclick="uncheck()">Uncheck Checkbox</button>
+  <button onclick="check()">Marcar</button>
+  <button onclick="uncheck()">Desmarcar</button>
 
-<script>
-function check() {
-  document.getElementById("myCheck").checked = true;
-}
+  <script>
+    function check() {
+      document.getElementById("myCheck").checked = true;
+    }
 
-function uncheck() {
-  document.getElementById("myCheck").checked = false;
-}
-</script>
+    function uncheck() {
+      document.getElementById("myCheck").checked = false;
+    }
+
+  </script>
+
+  <hr>
 
 </body>
+
 </html>

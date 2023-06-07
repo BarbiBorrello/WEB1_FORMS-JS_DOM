@@ -137,28 +137,37 @@
                 hubo_error = true;
             }
 
+/*---------------------------------------MENSAJES: ERRORES Y CONFIRMACIONES ---------------------------------------------*/ 
 
-            if (hubo_error) {//
-                lta_errores.style.display = "initial";
-                return false;
-            } else {
-                let p = document.createElement("p");
-                if (f_email.value != "") {
-                    p.innerHTML =
-                        f_nombre.value + " dice " +
-                        f_mensaje.value + ". Contacto: " +
-                        f_email.value + ".";
-                } else {
-                    p.innerHTML =
+
+            if (hubo_error) {// SI hubo error
+                lta_errores.style.display = "initial"; // el formulario vuelve a su estilo original
+                return false; // no se envia
+            } else { // NO hubo error
+                let p = document.createElement("p"); // se crea un parrafo
+                if (f_email.value != "") { //cuando el mail es distinto de VACIO
+                    p.innerHTML = // que incluye 
+                        f_nombre.value + " dice " + // Barbara dice.....
+                        f_mensaje.value + ". Contacto: " + // Hola que tal...
+                        f_email.value + "."; // biborrello@hotmail.com
+                }  else { // ademas 
+                        p.innerHTML = 
                         f_nombre.value + " dice " +
                         f_mensaje.value + ".";
                 }
+
+/*---------------------------------------mensajes : AGREGAR EN LISTA DE MENSAJES ------------------------------------*/
+
                 lta_mensajes.appendChild(p);
-                document.forms["f_contacto"].reset();
+                document.forms["f_contacto"].reset(); // RESETEAR FORMULARIO: para nueva carga de datos
+
+/*--------------------------------------- FOCUS: EN PRIMER ELEMENTO ------------------------------------*/
+
                 let primero = document.querySelector("form input");
                 primero.focus();
-            }
-            return false;
+           }
+            
+           return false;
         }
 
 

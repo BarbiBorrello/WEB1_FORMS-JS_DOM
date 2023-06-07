@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejercicio Simulacro</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Nunito:ital,wght@1,200&family=Roboto:ital,wght@0,300;1,100;1,300&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center; /*Ejercicio Parcial: Intento 2*/
+        }
+
+        form {
+            border: 3px solid blue;
+            border-style:dotted;
+            border-radius: 30px;
+            width: 500px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            justify-items: center;
+            gap: 10px;
+            padding: 30px;
+            margin: 10px;
+
+        }
+    </style>
+
+</head>
+<!--
+Ejercicio a desarrollar. Entregar sitio web en forma adjunta.
+
+Crear un formulario que permita cargar reseñas de películas con los siguientes datos:
+Película (obligatorio, máximo 30 caracteres)  //OK
+Puntuación (obligatorio, solo se puede puntuar con 1, 2, 3, 4 o 5) // OK
+Comentario (opcional, pero si la escribe el mínimo es 10 caracteres y el máximo es 200 caracteres) //OK
+
+Dar estilo particular al formulario. //OK
+Validar campos usando javascript. // FALTO CALIFICACION NO LLEGUE A TIEMPO
+Mostrar errores de validación manipulando el DOM. // OK
+Cambiar estilo a campos con errores de validación. // OK
+
+
+Al enviar, si los datos está bien hacer lo siguiente:
+Mostrar los datos ingresados con el formato que desee. Cada reseña debe distinguirse. // OK pero..... no hice a tiempo que se distingan
+Limpiar el formulario. // OK
+Hacer foco en el input de la película // OK
+-->
+
+<body>
+
+    <body>
+        <h1>Ejercicio Parcial: Intento 2</h1>
+
+
+        <form onsubmit="return validar()" id="f_peli">
+
+
+
+            <div class="titulo_formulario"> Reseñas de Peliculas</div>
+
+            <label for="f_nombrepeli">Pelicula</label>
+            <input type="text" id="pelicula" name="pelicula">
+
+
+
+
+            <label for="calificacion">Calificacion:</label> <br />
+            <div class="especialidades" id="especialidades">
+                <label for="calificacion"> 1</label>
+                <input type="checkbox" name="especialidad" id="calificacion" required value="1" />
+
+                <label for="calificacion"> 2</label>
+                <input type="checkbox" name="especialidad" id="calificacion" required value="2" />
+
+
+                <label for="calificacion"> 3</label>
+                <input type="checkbox" name="especialidad" id="calificacion" required value="3" />
+
+                <label for="calificacion"> 4</label>
+                <input type="checkbox" name="especialidad" id="calificacion" required value="4" />
+
+                <label for="calificacion"> 5</label>
+                <input type="checkbox" name="especialidad" id="calificacion" required value="5" />
+            </div>
+
+
+            <label for="f_mensaje">Mensaje</label>
+            <textarea id="f_mensaje" rows="3"></textarea>
+
+
+
+            <button type="submit">Enviar</button>
+
+            <div id="errores"> </div>
+        </form>
+
+        <div id="mensajes">
+        </div>
+
+
+        <script>
+            let primero = document.querySelector("form input");
+            primero.focus();
+
+
+            function validar() {
+                let f_nombre = document.querySelector("#f_nombrepeli");
+                f_nombre.classList.remove("error");
+
+                let f_mensaje = document.querySelector("#f_mensaje");
+                f_mensaje.classList.remove("error");
+
+
+
+                let lta_errores = document.querySelector("#errores");
+                lta_errores.innerHTML = "";
+                lta_errores.style.display = "none";
+
+
+                let lta_mensajes = document.querySelector("#mensajes");
+                let hubo_error = false;
+
+                if (f_nombrepeli.value == "") {
+                    f_nombre.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Falta el Pelicula";
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+                } else if (f_nombrepeli.value.length > 30) {
+                    f_mensaje.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Longitud máxima de la pelicula: 30 caracteres";
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+                }
+
+
+
+                if (f_mensaje.value.length > 200) {
+                    f_mensaje.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Caracteres maximos 200";
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+                } else if (f_mensaje.value.length < 10) {
+                    f_mensaje.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Caracteres minimos 10";
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+
+
+                }
+
+
+
+                if (hubo_error) {//
+                    lta_errores.style.display = "initial";
+                    return false;
+                } else {
+                    let p = document.createElement("p");
+                    if (f_nombrepeli.value != "") {
+                        p.innerHTML =
+                            f_nombrepeli.value + " " +
+                            f_mensaje.value;
+
+                    }
+
+                    lta_mensajes.appendChild(p);
+                    document.forms["f_peli"].reset();
+                    let primero = document.querySelector("form input");
+                    primero.focus();
+                }
+                return false;
+            }
+
+        </script>
+
+
+
+    </body>
+
+</html>

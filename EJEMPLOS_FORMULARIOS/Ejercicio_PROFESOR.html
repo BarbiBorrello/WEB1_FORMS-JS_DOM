@@ -34,9 +34,10 @@
 
 
 <!---------------------------------------Campo: NOMBRE ----------------------------------------------------->        
+      
         <label for="f_nombre">Nombre</label>
         <input id="f_nombre" autofocus /> <!--FOCO PRIMER ELEMENTO-->
-
+    
 <!---------------------------------------Campo: MENSAJE ----------------------------------------------------->  
 
         <label for="f_mensaje">Mensaje</label>
@@ -145,15 +146,15 @@
                 return false; // no se envia
             } else { // NO hubo error
                 let p = document.createElement("p"); // se crea un parrafo
-                if (f_email.value != "") { //cuando el mail es distinto de VACIO
-                    p.innerHTML = // que incluye 
+                if (f_email.value != "") { // Si proveyó el email:
+                    p.innerHTML = 
                         f_nombre.value + " dice " + // Barbara dice.....
                         f_mensaje.value + ". Contacto: " + // Hola que tal...
-                        f_email.value + "."; // biborrello@hotmail.com
-                }  else { // ademas 
+                        f_email.value + "."; // Contacto : biborrello@hotmail.com 
+                }  else { // sino NO proveyo el email:
                         p.innerHTML = 
-                        f_nombre.value + " dice " +
-                        f_mensaje.value + ".";
+                        f_nombre.value + " dice " + // Barbara dice.....
+                        f_mensaje.value + "."; // Hola que tal...
                 }
 
 /*---------------------------------------mensajes : AGREGAR EN LISTA DE MENSAJES ------------------------------------*/

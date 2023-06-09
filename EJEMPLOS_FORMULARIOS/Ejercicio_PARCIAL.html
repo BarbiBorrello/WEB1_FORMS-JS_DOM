@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ejercicio Simulacro</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Nunito:ital,wght@1,200&family=Roboto:ital,wght@0,300;1,100;1,300&display=swap"
+        rel="stylesheet">
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .contenedor_form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        form {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            border: 4px solid blue;
+            border-radius: 20px;
+            gap: 10px;
+            margin: 10px;
+
+        }
+
+        input:focus {
+            background-color: yellow;
+        }
+    </style>
+
+</head>
+<!--
+Ejercicio a desarrollar. Entregar sitio web en forma adjunta.
+
+Crear un formulario que permita cargar reseñas de películas con los siguientes datos:
+Película (obligatorio, máximo 30 caracteres)  //OK
+Puntuación (obligatorio, solo se puede puntuar con 1, 2, 3, 4 o 5) // OK / select / radio button / numbers
+Comentario (opcional, pero si la escribe el mínimo es 10 caracteres y el máximo es 200 caracteres) //OK
+
+Dar estilo particular al formulario. //OK
+Validar campos usando javascript. // FALTO CALIFICACION NO LLEGUE A TIEMPO
+Mostrar errores de validación manipulando el DOM. // OK
+Cambiar estilo a campos con errores de validación. // OK
+
+
+Al enviar, si los datos está bien hacer lo siguiente:
+Mostrar los datos ingresados con el formato que desee. Cada reseña debe distinguirse. // div por cada reseña y un border // OK pero..... no hice a tiempo que se distingan
+Limpiar el formulario. // OK
+Hacer foco en el input de la película // OK
+-->
+
+<body>
+
+    <body>
+
+        <h1>Ejercicio Parcial Web 1</h1>
+
+        <div class="contenedor_form">
+
+            <form onsubmit="return validar()" id="f_peliculas">
+
+                <label for="f_pelicula">Peliculas</label>
+                <input type="text" id="f_pelicula" name="f_pelicula" placeholder="Ingresa tu peli favorita" autofocus>
+
+                <label for="f_puntaje"> Calificacion</label>
+                <select id="f_puntaje" name="f_puntaje">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="4">5</option>
+                </select>
+
+
+                <label for="f_comentario">Comentarios</label>
+                <textarea id="f_comentario" rows="3"></textarea>
+
+
+                <button type="submit">Enviar</button>
+
+                <div id="errores"> </div>
+
+            </form>
+
+        </div>
+
+        <div id="mensajes"> </div>
+
+        <!--------------------------------VALICACIOM JS----------------------------------------------------->
+
+        <script>
+
+            let primero = document.querySelector("form input");
+            primero.focus(); /*hacer foco primer elemento*/
+
+            /*--FUNCION: VALIDAR--*/
+
+            function validar() {
+
+                /*--VARIABLES--*/
+
+                let f_nombre = document.querySelector("#f_pelicula");
+                f_nombre.classList.remove("error");
+
+                /*let f_puntaje = document.getElementById("f_puntaje").selectedIndex;
+                f_puntaje.classList.remove("error");*/
+
+                let f_comentario = document.querySelector("#f_comentario");
+                f_comentario.classList.remove("error");
+
+
+                /*--PELICULA : OBLIGATORIO - MAXIMO 30 CARACTERES--*/
+
+                if (f_pelicula.value == "") { /*OBLIGATORIO*/
+                    f_pelicula.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Pelicula es un campo obligatorio"; /*OBLIGATORIO*/
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+                } else if (f_pelicula.value.length > 30) { /*MAXIMO 30 CARACTERES*/
+                    f_pelicula.classList.add("error");
+                    p.innerHTML = "Pelicula tiene un maximo de 30 caracteres";
+                    lta_errores.appendChild(p);
+                    hubo_error = true
+                }
+                /* PRUEBAS campo: PELICULAS*/
+                /* caracteres 29: oifjsñkdvmsñdvdovkvl,ñdvdodlk*/
+                /* caracteres 30: oifjsñkdvmsñdvdovkvl,ñdvdodlkU*/
+
+                /*--PUNTUACION : OBLIGATORIO - Y SOLO DEL 1 AL 5*/
+
+
+                /*--COMENTARIOS : OPCIONAL - mínimo es 10 caracteres y el máximo es 200 caracteres */
+
+                if (f_comentario = "" && f_comentario.value.length > 200) {
+
+                    f_comentario.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Comentario tiene un maximo de 300 caracteres ";
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+                } else if (f_comentario = "" && f_comentario.value.length < 10) {
+
+                    f_comentario.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Comentario tiene un minimo de 10 caracteres ";
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+                }
+                /* PRUEBAS campo: COMENTARIOS*/
+                /* caracteres 10: oifjsñkdvmsñdvdovkvl,ñdvdodlk*/
+                /* caracteres 201: 1234567890YYEUFHOSIDKVMNPKDVMSZPIDJKDVXLCVLKVPÑSIJDVCJNDVLSNDVLKMCVLXKVNÑDVLCVLVLDVNSDJKMDVLDNVLKDVÑKMDVKDMVDNVKDVÑKDMVLLKNDVLKDVLVLVLNVLKDMVLXC LVNLXCXLMC LXKVNLKFNVLDKVLM VLDFVNLDFVLDFVFKVNDVVVXLCV K*/
+
+                /*--MENSAJES: ERRORES Y CONFIRMACIONES --*/
+
+
+                if (hubo_error) {// SI hubo error
+                    lta_errores.style.display = "initial"; // el formulario vuelve a su estilo original
+                    return false; // no se envia
+                } else { // NO hubo error
+                    let p = document.createElement("p"); // se crea un parrafo
+                    if (f_pelicula.value != "" && f_puntaje.value !== null && f_puntaje.value !== 0) { // Si proveyó el email:
+                        p.innerHTML =
+                            f_pelicula.value + " dice " + // Barbara dice.....
+                            f_mensaje.value + ". Contacto: "; // Hola que tal...
+                        /*f_email.value + "."; // Contacto : biborrello@hotmail.com */
+                    } else { // sino NO proveyo el email:
+                        p.innerHTML =
+                            f_pelicula.value + " dice " + // Barbara dice.....
+                            f_mensaje.value + "."; // Hola que tal...
+                    }
+
+
+                }
+
+
+
+
+            }
+
+
+
+        </script>
+
+    </body>
+
+</html>

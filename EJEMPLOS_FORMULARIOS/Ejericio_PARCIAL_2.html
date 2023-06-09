@@ -1,8 +1,12 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
     <title>Ejercicio Simulacro</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
     <link
@@ -54,10 +58,10 @@
 
             margin-left: 200px;
         }
-
     </style>
 
 </head>
+
 <!--
 Ejercicio a desarrollar. Entregar sitio web en forma adjunta.
 
@@ -80,38 +84,21 @@ Hacer foco en el input de la película // OK
 
 <body>
 
-    <body>
-        <h1>Ejercicio Parcial</h1>
+    <h1>Ejercicio Parcial</h1>
         <form onsubmit="return validar()" id="f_peli">
 
             <label for="f_nombrepeli">Pelicula</label>
+            <span>Ingrese aqui su pelicula favorita</span>
             <input id="f_nombrepeli" autofocus required>
 
 
-            <label for="calificacion">Calificacion:</label> <br />
-            <div class="especialidades" id="especialidades">
-                <label for="calificacion"> 1</label>
-                <input type="checkbox" name="especialidad" id="calificacion" required value="1" />
+            <label for="f_puntaje">Calificacion:</label>
+            <span>califiquela del 1 al 5</span>
+            <input type="number" id="f_puntaje" name="f_puntaje" value="1">
 
-                <label for="calificacion"> 2</label>
-                <input type="checkbox" name="especialidad" id="calificacion" required value="2" />
-
-
-                <label for="calificacion"> 3</label>
-                <input type="checkbox" name="especialidad" id="calificacion" required value="3" />
-
-                <label for="calificacion"> 4</label>
-                <input type="checkbox" name="especialidad" id="calificacion" required value="4" />
-
-                <label for="calificacion"> 5</label>
-                <input type="checkbox" name="especialidad" id="calificacion" required value="5" />
-            </div>
-
-
-            <label for="f_mensaje">Mensaje</label>
+            <label for="f_comentario">Comentario</label>
+            <span>Cuentanos que te parecio (opcional)</span>
             <textarea id="f_mensaje" rows="3"></textarea>
-
-
 
             <button type="submit">Enviar</button>
 
@@ -128,11 +115,11 @@ Hacer foco en el input de la película // OK
 
 
             function validar() {
-                let f_nombre = document.querySelector("#f_nombrepeli");
-                f_nombre.classList.remove("error");
+                let f_pelicula = document.querySelector("#f_pelcula");
+                f_pelicula.classList.remove("error");
 
-                let f_mensaje = document.querySelector("#f_mensaje");
-                f_mensaje.classList.remove("error");
+                let f_comentario = document.querySelector("#f_comentario");
+                f_comentario.classList.remove("error");
 
 
 
@@ -144,13 +131,13 @@ Hacer foco en el input de la película // OK
                 let lta_mensajes = document.querySelector("#mensajes");
                 let hubo_error = false;
 
-                if (f_nombrepeli.value == "") {
+                if (f_pelicula.value == "") {
                     f_nombre.classList.add("error");
                     let p = document.createElement("p");
                     p.innerHTML = "Falta el Pelicula";
                     lta_errores.appendChild(p);
                     hubo_error = true;
-                } else if (f_nombrepeli.value.length > 30) {
+                } else if (f_pelicula.value.length > 30) {
                     f_mensaje.classList.add("error");
                     let p = document.createElement("p");
                     p.innerHTML = "Longitud máxima de la pelicula: 30 caracteres";
@@ -185,7 +172,7 @@ Hacer foco en el input de la película // OK
                     let p = document.createElement("p");
                     if (f_nombrepeli.value != "") {
                         p.innerHTML =
-                            f_nombrepeli.value + " "+
+                            f_pelicula.value + " "+
                             f_mensaje.value ;
                       
                     } 
@@ -201,7 +188,6 @@ Hacer foco en el input de la película // OK
         </script>
 
 
-
-    </body>
+</body>
 
 </html>

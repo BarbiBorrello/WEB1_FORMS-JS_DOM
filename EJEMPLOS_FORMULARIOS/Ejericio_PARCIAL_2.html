@@ -85,107 +85,123 @@ Hacer foco en el input de la película // OK
 <body>
 
     <h1>Ejercicio Parcial</h1>
-        <form onsubmit="return validar()" id="f_peli">
+    <form onsubmit="return validar()" id="f_peli">
 
-            <label for="f_nombrepeli">Pelicula</label>
-            <span>Ingrese aqui su pelicula favorita</span>
-            <input id="f_nombrepeli" autofocus required>
-
-
-            <label for="f_puntaje">Calificacion:</label>
-            <span>califiquela del 1 al 5</span>
-            <input type="number" id="f_puntaje" name="f_puntaje" value="1">
-
-            <label for="f_comentario">Comentario</label>
-            <span>Cuentanos que te parecio (opcional)</span>
-            <textarea id="f_mensaje" rows="3"></textarea>
-
-            <button type="submit">Enviar</button>
-
-            <div id="errores"> </div>
-        </form>
-
-        <div id="mensajes">
-        </div>
+        <label for="f_nombrepeli">Pelicula</label>
+        <span>Ingrese aqui su pelicula favorita</span>
+        <input id="f_nombrepeli" autofocus>
 
 
-        <script>
-            let primero = document.querySelector("form input");
-            primero.focus();
+        <label for="f_puntaje">Calificacion:</label>
+        <span>califiquela del 1 al 5</span>
+        <input type="number" id="f_puntaje" name="f_puntaje" value="1">
+
+        <label for="f_comentario">Comentario</label>
+        <span>Cuentanos que te parecio (opcional)</span>
+        <textarea id="f_mensaje" rows="3"></textarea>
+
+        <button type="submit">Enviar</button>
+
+        <div id="errores"> </div>
+    </form>
+
+    <div id="mensajes">
+    </div>
 
 
-            function validar() {
-                let f_pelicula = document.querySelector("#f_pelcula");
-                f_pelicula.classList.remove("error");
-
-                let f_comentario = document.querySelector("#f_comentario");
-                f_comentario.classList.remove("error");
+    <script>
+        let primero = document.querySelector("form input");
+        primero.focus();
 
 
+        function validar() {
+            let f_pelicula = document.querySelector("#f_pelcula");
+            f_pelicula.classList.remove("error");
 
-                let lta_errores = document.querySelector("#errores");
-                lta_errores.innerHTML = "";
-                lta_errores.style.display = "none";
+            let f_puntaje = document.querySelector("#f_puntaje");
+            f_puntaje.classList.remove("error");
 
-
-                let lta_mensajes = document.querySelector("#mensajes");
-                let hubo_error = false;
-
-                if (f_pelicula.value == "") {
-                    f_nombre.classList.add("error");
-                    let p = document.createElement("p");
-                    p.innerHTML = "Falta el Pelicula";
-                    lta_errores.appendChild(p);
-                    hubo_error = true;
-                } else if (f_pelicula.value.length > 30) {
-                    f_mensaje.classList.add("error");
-                    let p = document.createElement("p");
-                    p.innerHTML = "Longitud máxima de la pelicula: 30 caracteres";
-                    lta_errores.appendChild(p);
-                    hubo_error = true;
-                }
+            let f_comentario = document.querySelector("#f_comentario");
+            f_comentario.classList.remove("error");
 
 
 
-                if (f_mensaje.value.length > 200) {
-                    f_mensaje.classList.add("error");
-                    let p = document.createElement("p");
-                    p.innerHTML = "Caracteres maximos 200";
-                    lta_errores.appendChild(p);
-                    hubo_error = true;
-                } else if (f_mensaje.value.length < 10) {
-                    f_mensaje.classList.add("error");
-                    let p = document.createElement("p");
-                    p.innerHTML = "Caracteres minimos 10";
-                    lta_errores.appendChild(p);
-                    hubo_error = true;
+            let lta_errores = document.querySelector("#errores");
+            lta_errores.innerHTML = "";
+            lta_errores.style.display = "none";
 
 
-                }
+            let lta_mensajes = document.querySelector("#mensajes");
+            let hubo_error = false;
 
-                
+            /*---------------------------------------Validacion: PELICULAS ---------------------------------------------*/
 
-                if (hubo_error) {//
-                    lta_errores.style.display = "initial";
-                    return false;
-                } else {
-                    let p = document.createElement("p");
-                    if (f_nombrepeli.value != "") {
-                        p.innerHTML =
-                            f_pelicula.value + " "+
-                            f_mensaje.value ;
-                      
-                    } 
-
-                    lta_mensajes.appendChild(p);
-                    document.forms["f_peli"].reset();
-                    let primero = document.querySelector("form input");
-                    primero.focus();
-                }
-                return false;
+            if (f_pelicula.value == "") {
+                f_pelicula.classList.add("error");
+                let p = document.createElement("p");
+                p.innerHTML = "Falta Pelicula";
+                lta_errores.appendChild(p);
+                hubo_error = true;
+            } else if (f_pelicula.value.length > 30) {
+                f_pelicula.classList.add("error");
+                let p = document.createElement("p");
+                p.innerHTML = "Longitud máxima 30 caracteres";
+                lta_errores.appendChild(p);
+                hubo_error = true;
             }
-            
-        </script>
+
+            /*---------------------------------------Validacion: PUNTAJE ---------------------------------------------*/
+
+            /*---------------------------------------Validacion: COMENTARIOS ---------------------------------------------*/
+            if (f_comentario.value != "" && f_comentario.value.length > 200) {
+
+                f_comentario.classList.add("error");
+                let p = document.createElement("p");
+                p.innerHTML = "tiene mas de 200";
+                lta_errores.appendChild(p);
+                hubo_error = true;
+            } else if (f_comentario.value != "" && f_comentario.value.length < 10){
+                f_comentario.classList.add("error");
+                let p = document.createElement("p");
+                p.innerHTML = "tiene menos de 10";
+                lta_errores.appendChild(p);
+                hubo_error = true;
+
+            }
+ 
+ 
+            /*---------------------------------------MENSAJES: ERRORES Y CONFIRMACIONES ---------------------------------------------*/            
+
+            if (hubo_error) {// SI hubo error
+                lta_errores.style.display = "initial"; // el formulario vuelve a su estilo original
+                return false; // no se envia
+            } else { // NO hubo error
+                let p = document.createElement("p"); // se crea un parrafo
+                if (f_email.value != "") { // Si proveyó el email:
+                    p.innerHTML =
+                        f_nombre.value + " dice " + // Barbara dice.....
+                        f_mensaje.value + ". Contacto: " + // Hola que tal...
+                        f_email.value + "."; // Contacto : biborrello@hotmail.com 
+                } else { // sino NO proveyo el email:
+                    p.innerHTML =
+                        f_nombre.value + " dice " + // Barbara dice.....
+                        f_mensaje.value + "."; // Hola que tal...
+                }
+
+                /*---------------------------------------mensajes : AGREGAR EN LISTA DE MENSAJES ------------------------------------*/
+
+                                lta_mensajes.appendChild(p);
+                document.forms["f_pelis"].reset(); // RESETEAR FORMULARIO: para nueva carga de datos
+
+                /*--------------------------------------- FOCUS: EN PRIMER ELEMENTO ------------------------------------*/
+
+                                let primero = document.querySelector("form input");
+                primero.focus();
+        }
+        return false;
+    }
+
+    </script>
 
 
 </body>

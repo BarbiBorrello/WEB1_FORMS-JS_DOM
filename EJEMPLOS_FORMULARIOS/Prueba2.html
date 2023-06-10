@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Prueba 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Nunito:ital,wght@1,200&family=Roboto:ital,wght@0,300;1,100;1,300&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Roboto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 30px;
+            margin: 10px;
+            border: 5px solid blue;
+            border-radius: 15px;
+        }
+
+        textarea {
+            border: 1px solid black;
+            border-radius: 0px 15px 0px 15px;
+        }
+
+        #errores {
+            border: 1px solid red;
+            padding: 5px;
+            display: none;
+        }
+
+        #errores p {
+            color: red;
+        }
+
+        .error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<!--
+Crear un formulario que permita cargar reseñas de películas con los siguientes datos:
+Película (obligatorio, máximo 30 caracteres)
+Puntuación (obligatorio, solo se puede puntuar con 1, 2, 3, 4 o 5)
+Comentario (opcional, pero si la escribe el mínimo es 10 caracteres y el máximo es 200 caracteres)
+Dar estilo particular al formulario.
+Validar campos usando javascript.
+Mostrar errores de validación manipulando el DOM.
+Cambiar estilo a campos con errores de validación.
+Al enviar, si los datos está bien hacer lo siguiente:
+Mostrar los datos ingresados con el formato que desee. Cada reseña debe distinguirse.
+Limpiar el formulario.
+Hacer foco en el input de la película.
+-->
+
+<body>
+    <h1>Ejercicio Simulacro</h1>
+
+    <!---------------------------------------FORMULARIO----------------------------------------------------->
+    <form onsubmit="return validar()" id="f_pelis">
+
+
+        <!---------------------------------------Campo: NOMBRE ----------------------------------------------------->
+
+        <label for="f_pelicula">Pelicula</label>
+        <input id="f_pelicula" autofocus /> <!--FOCO PRIMER ELEMENTO-->
+
+
+        <!---------------------------------------Campo: CLASIFICACION ----------------------------------------------------->
+        <label for="f_puntaje">Calificacion</label>
+
+        <select name="f_puntaje" id="f_puntaje">
+
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+
+        </select>
+
+
+        <!---------------------------------------Campo: COMENTARIOS ----------------------------------------------------->
+        <label for="f_comentario">Comentario</label>
+        <input id="f_comentario" />
+
+        <!---------------------------------------Boton : ENVIAR ----------------------------------------------------->
+        <button type="submit">Enviar</button>
+
+        <!---------------------------------------ERRORES => LISTA DE ERRORES --------------------------------------->
+        <div id="errores"> </div>
+
+    </form>
+    <!-------------------------------FIN DEL FORMULARIO-------------------------------------------------------->
+
+    <!---------------------------------------MENSAJES => "pagina dice.... "------------------------------------>
+    <div id="mensajes"> </div>
+
+
+
+    <!---------------------------------------JS------------------------------------------------------------->
+
+    <script>
+
+        let primero = document.querySelector("form input");
+        primero.focus(); /*hacer foco primer elemento*/
+
+
+
+        /*---------------------------------------Funcion : VALIDAR -------------------------------------------------------------*/
+        function validar() {
+
+
+            /*---------------------------------------Variables : CAMPOS del FORMULARIO ---------------------------------------------*/
+
+
+            let f_pelicula = document.querySelector("#f_pelicula");
+            f_pelicula.classList.remove("error");
+
+
+            let f_comentario = document.querySelector("#f_comentario");
+            f_comentario.classList.remove("error");
+
+            let f_puntaje = document.querySelector("#f_puntaje");
+            f_puntaje.classList.remove("error");
+
+
+            let lta_errores = document.querySelector("#errores");
+            lta_errores.innerHTML = "";
+            lta_errores.style.display = "none";
+
+
+            let lta_mensajes = document.querySelector("#mensajes");
+            let hubo_error = false;
+
+
+
+            /*---------------------------------------Validacion: PELICULA ---------------------------------------------*/
+
+            if (f_pelicula.value == "") {
+                f_pelicula.classList.add("error");
+                let p = document.createElement("p");
+                p.innerHTML = "Falta pelicula";
+                lta_errores.appendChild(p);
+                hubo_error = true;
+
+
+            } else if (f_pelicula.value.length > 30) {
+                f_pelicula.classList.add("error");
+                let p = document.createElement("p");
+                p.innerHTML = "Pelicula :Tiene mas de 30 caracteres";
+                lta_errores.appendChild(p);
+                hubo_error = true;
+
+
+            }
+
+            /*Prueba 41 caracteres : Harry Potter y la camara de los secretos*/
+
+            /*---------------------------------------Validacion: CALIFICACION ---------------------------------------------*/
+
+            if (f_puntaje.value >= 1 && f_puntaje.value <= 5) {
+
+                f_puntaje.classList.add("error");
+                let p = document.createElement("p");
+                p.innerHTML = "Falta calificacion";
+                lta_errores.appendChild(p);
+                hubo_error = true
+
+            }
+
+            /*---------------------------------------Validacion: COMENTARIOS ---------------------------------------------*/
+            if (f_comentario.value !== " " && f_comentario.value.length > 200) {
+                    f_comentario.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Comentarios: Caracteres maximos 200";
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+                } else if (f_comentario.value !== "" &&f_comentario.value.length < 10) {
+                    f_comentario.classList.add("error");
+                    let p = document.createElement("p");
+                    p.innerHTML = "Comentarios:Caracteres minimos 10";
+                    lta_errores.appendChild(p);
+                    hubo_error = true;
+                } 
+
+                /*Prueba  3 caracteres :  ok*/
+
+
+            /*---------------------------------------MENSAJES: ERRORES Y CONFIRMACIONES ---------------------------------------------*/
+
+
+            if (hubo_error) {// SI hubo error
+                lta_errores.style.display = "initial"; // el formulario vuelve a su estilo original
+                return false;
+                // no se envia
+            } else { // NO hubo error
+                let p = document.createElement("p"); // se crea un parrafo
+                if (f_pelicula != "" && f_puntaje == 1) { // hay pelicula y puntuacion
+                    p.innerHTML =
+                        "La pelicula selecionada es :" + " " + f_pelicula.value;
+                        "Calificacion: " + " " + f_puntuacion.value;
+
+
+                } else { // 
+                    p.innerHTML = // hay pelciula/ calificacion y comentario*/
+
+                        "La pelicula selecionada es :" + " " + f_pelicula.value;
+                        "Calificacion: " + " "+ f_puntuacion.value;
+                        "Comentario: " + " "+ f_comentario.value;
+
+
+
+                }
+
+                /*---------------------------------------mensajes : AGREGAR EN LISTA DE MENSAJES ------------------------------------*/
+
+                lta_mensajes.appendChild(p);
+                document.forms["f_pelis"].reset(); // RESETEAR FORMULARIO: para nueva carga de datos
+
+                /*--------------------------------------- FOCUS: EN PRIMER ELEMENTO ------------------------------------*/
+
+                let primero = document.querySelector("form input");
+                primero.focus();
+            }
+
+            return false;
+        }
+
+
+    </script>
+</body>
+
+</html>

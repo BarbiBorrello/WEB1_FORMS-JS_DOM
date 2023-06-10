@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio Parcial</title>
-
+    <title>Prueba 1</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Nunito:ital,wght@1,200&family=Roboto:ital,wght@0,300;1,100;1,300&display=swap"
@@ -46,31 +42,27 @@
             border: 1px solid red;
         }
     </style>
-
 </head>
-
 <!--
-    Crear un formulario con:
-        Nombre (obligatorio)
-        Mensaje (obligatorio, máximo 200 caracteres)
-        Email (opcional, pero válido si lo ingresa)
-    Dar estilo particular al formulario
-    Validar campos
-    Mostrar lista con errores creando elementos del DOM
-    Cambiar estilo a campos con errores
-    Al enviar, si los datos está bien, agregar mensaje a una lista de mensajes, con el siguiente formato:
-    Si proveyó el email,
-    “<nombre> dice <mensaje>. Contacto: <email>.”
-    Si no,
-    “<nombre> dice <mensaje>.”
-    Limpiar los campos, errores de validación y cambios de estilo
-    Hacer foco en el primer input al iniciar el documento y luego de cada envío correcto
+Crear un formulario que permita cargar reseñas de películas con los siguientes datos:
+Película (obligatorio, máximo 30 caracteres)
+Puntuación (obligatorio, solo se puede puntuar con 1, 2, 3, 4 o 5)
+Comentario (opcional, pero si la escribe el mínimo es 10 caracteres y el máximo es 200 caracteres)
+Dar estilo particular al formulario.
+Validar campos usando javascript.
+Mostrar errores de validación manipulando el DOM.
+Cambiar estilo a campos con errores de validación.
+Al enviar, si los datos está bien hacer lo siguiente:
+Mostrar los datos ingresados con el formato que desee. Cada reseña debe distinguirse.
+Limpiar el formulario.
+Hacer foco en el input de la película.
 -->
 
 <body>
+    <h1>Ejercicio Simulacro</h1>
 
     <!---------------------------------------FORMULARIO----------------------------------------------------->
-    <form onsubmit="return validar()" id="f_peliculas">
+        <form onsubmit="return validar()" id="f_pelis">
 
 
         <!---------------------------------------Campo: NOMBRE ----------------------------------------------------->
@@ -86,6 +78,22 @@
         <!---------------------------------------Campo: EMAIL ----------------------------------------------------->
         <label for="f_email">Email</label>
         <input id="f_email" />
+
+        <!---------------------------------------Campo: CALIFICACION ----------------------------------------------------->
+        <label for="f_puntaje">Calificacion</label>
+
+        <select name="f_puntaje" id="f_puntaje">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+    
+
+        <!---------------------------------------Campo: COMENTARIOS ----------------------------------------------------->
+        <label for="f_comentario">Comentario</label>
+        <input id="f_comentario" />
 
         <!---------------------------------------Boton : ENVIAR ----------------------------------------------------->
         <button type="submit">Enviar</button>
@@ -120,7 +128,7 @@
             /*---------------------------------------Variables : CAMPOS del FORMULARIO ---------------------------------------------*/
 
 
-            let f_pelicula = document.querySelector("#f_pelcula");
+            let f_pelicula = document.querySelector("#f_pelicula");
             f_pelicula.classList.remove("error");
 
             let f_mensaje = document.querySelector("#f_mensaje");
@@ -128,6 +136,9 @@
 
             let f_email = document.querySelector("#f_email");
             f_email.classList.remove("error");
+
+            let f_comentario =document.querySelector("#f_comentario");
+            f_comentario.classList.remove("error");
 
 
             let lta_errores = document.querySelector("#errores");
@@ -145,10 +156,24 @@
             if (f_pelicula.value == "") {
                 f_pelicula.classList.add("error");
                 let p = document.createElement("p");
-                p.innerHTML = "Falta el pelicula";
+                p.innerHTML = "Falta pelicula";
                 lta_errores.appendChild(p);
                 hubo_error = true;
+                document.forms["f_pelis"].reset();
+            } else if (f_pelicula.value.length > 30 ){
+                f_pelicula.classList.add("error");
+                let p = document.createElement("p");
+                p.innerHTML ="Tiene mas de 30 caracteres";
+                lta_errores.appendChild(p);
+                hubo_error = true;
+                document.forms["f_pelis"].reset();
             }
+
+            /*Prueba 31 caracteres : y9eismdkmcksmcisdvnsuenskmvsk56*/
+
+            /*---------------------------------------Validacion: COMENTARIOS ---------------------------------------------*/
+
+  
 
             /*---------------------------------------Validacion: MENSAJES ---------------------------------------------*/
 
@@ -186,21 +211,22 @@
                 return false; // no se envia
             } else { // NO hubo error
                 let p = document.createElement("p"); // se crea un parrafo
-                if (f_pelicula.value != "") { // Si proveyó el email:
+                if (f_pelicula != "") { // Si proveyó el email:
                     p.innerHTML =
-                        f_pelicula.value + " dice " + // Barbara dice.....
+                        "La pelicula selecionada es :" +" " + f_pelicula.value +
                         f_mensaje.value + ". Contacto: " + // Hola que tal...
                         f_email.value + "."; // Contacto : biborrello@hotmail.com 
                 } else { // sino NO proveyo el email:
                     p.innerHTML =
-                        f_nombre.value + " dice " + // Barbara dice.....
+                    
+                    "La pelicula selecionada es :" +" " + f_pelicula.value +
                         f_mensaje.value + "."; // Hola que tal...
                 }
 
                 /*---------------------------------------mensajes : AGREGAR EN LISTA DE MENSAJES ------------------------------------*/
 
                 lta_mensajes.appendChild(p);
-                document.forms["f_peliculas"].reset(); // RESETEAR FORMULARIO: para nueva carga de datos
+                document.forms["f_pelis"].reset(); // RESETEAR FORMULARIO: para nueva carga de datos
 
                 /*--------------------------------------- FOCUS: EN PRIMER ELEMENTO ------------------------------------*/
 
@@ -213,9 +239,6 @@
 
 
     </script>
-
-
-
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Ejercicio Simulacro</title>
+    <title>Prueba 3</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Nunito:ital,wght@1,200&family=Roboto:ital,wght@0,300;1,100;1,300&display=swap"
@@ -54,8 +54,9 @@
             margin-left: 200px;
         }
 
-
-
+        .mensajes{ /* estilo mensajes*/
+            background-color: blueviolet;
+        }
     </style>
 
 </head>
@@ -86,7 +87,7 @@ Hacer foco en el input de la película // OK
         <form onsubmit="return validar()" id="f_peli">
 
             <label for="f_nombrepeli">Pelicula</label>
-            <input id="f_nombrepeli" autofocus>
+            <input id="f_nombrepeli" autofocus required>
 
 
 
@@ -101,20 +102,20 @@ Hacer foco en el input de la película // OK
             <div id="errores"> </div>
         </form>
 
-        <div id="mensajes">
+
+        <div class="mensajes">
+
+            <div id="mensajes"> </div>
+
         </div>
-
-
         <script>
             let primero = document.querySelector("form input");
             primero.focus();
 
 
             function validar() {
-
-
-                let f_nombrepeli = document.querySelector("#f_nombrepeli");
-                f_nombrepeli.classList.remove("error");
+                let f_nombre = document.querySelector("#f_nombrepeli");
+                f_nombre.classList.remove("error");
 
                 let f_mensaje = document.querySelector("#f_mensaje");
                 f_mensaje.classList.remove("error");
@@ -143,25 +144,25 @@ Hacer foco en el input de la película // OK
                     hubo_error = true;
                 }
 
+                /*----------------------------------------------------------------------------------------------------------*/
 
-
-                if (f_mensaje.value.length > 200) {
+                if (f_mensaje.value.length != "" && f_mensaje.value.length > 200) {
                     f_mensaje.classList.add("error");
                     let p = document.createElement("p");
-                    p.innerHTML = "Caracteres maximos 200";
+                    p.innerHTML = "Comentarios :Caracteres maximos 200";
                     lta_errores.appendChild(p);
                     hubo_error = true;
-                } else if (f_mensaje.value.length < 10) {
+                } else if (f_mensaje.value.length != "" && f_mensaje.value.length < 10) {
                     f_mensaje.classList.add("error");
                     let p = document.createElement("p");
-                    p.innerHTML = "Caracteres minimos 10";
+                    p.innerHTML = " Comentarios : Caracteres minimos 10";
                     lta_errores.appendChild(p);
                     hubo_error = true;
-
-
                 }
 
-                
+
+
+                /*------------------------------------------------------------------------------------------------------*/
 
                 if (hubo_error) {//
                     lta_errores.style.display = "initial";
@@ -170,10 +171,10 @@ Hacer foco en el input de la película // OK
                     let p = document.createElement("p");
                     if (f_nombrepeli.value != "") {
                         p.innerHTML =
-                            f_nombrepeli.value + " "+
-                            f_mensaje.value ;
-                      
-                    } 
+                            f_nombrepeli.value + " " +
+                            f_mensaje.value;
+
+                    }
 
                     lta_mensajes.appendChild(p);
                     document.forms["f_peli"].reset();
@@ -182,9 +183,11 @@ Hacer foco en el input de la película // OK
                 }
                 return false;
             }
-            
+
         </script>
 
 
 
     </body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Elaborado </title>
+
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Nunito:ital,wght@1,200&family=Roboto:ital,wght@0,300;1,100;1,300&display=swap"
+    rel="stylesheet">
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url("Fondo_cartelera.jpeg");
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            font-family: Roboto;
+        }
+
+        form {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 5px solid violet;
+            border-radius: 15px;
+            width: 400px;
+            background-color: white;
+            gap: 5px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 10px 5px 5px black;
+
+
+
+        }
+
+        .errormsj {
+            color: red;
+        }
+
+        ul {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: aqua;
+            border: 3px groove violet;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 10px 5px 5px black;
+
+
+        }
+    </style>
+
+
+</head>
+
+<!--
+    Ejercicio a desarrollar. Entregar sitio web en forma adjunta.
+
+Crear un formulario que permita cargar reseñas de películas con los siguientes datos:
+Película (obligatorio, máximo 30 caracteres)
+Puntuación (obligatorio, solo se puede puntuar con 1, 2, 3, 4 o 5)
+Comentario (opcional, pero si la escribe el mínimo es 10 caracteres y el máximo es 200 caracteres)
+Dar estilo particular al formulario.
+Validar campos usando javascript.
+Mostrar errores de validación manipulando el DOM.
+Cambiar estilo a campos con errores de validación.
+Al enviar, si los datos está bien hacer lo siguiente:
+Mostrar los datos ingresados con el formato que desee. Cada reseña debe distinguirse.
+Limpiar el formulario.
+Hacer foco en el input de la película.
+-->
+
+<body>
+
+
+    <!---------------------------------------FORMULARIO----------------------------------------------------->
+
+    <form id="form">
+
+        <h3>Formulario: Reseñas de peliculas</h3> <!--TITULO DEL FORMULARIO-->
+
+        <!-- Campo : PELICULA -->
+        <label for="peli">Película:</label>
+        <input type="text" id="peli">
+
+        <!--Campo : PUNTAJE -->
+
+        <label for="puntuacion"> Puntuación:</label>
+        <select id="puntuacion">
+            <option value="">Seleccione una puntuación</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <!--Campo: COMENTARIO -->
+
+        <label for="comentario">Comentario:</label>
+        <textarea id="comentario"></textarea>
+
+        <!--ENVIAR -->
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <!--RESEÑAS -->
+
+    <div id="reviewList">
+        <h2>Reseñas</h2>
+        <ul id="reviews"></ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formulario = document.getElementById('form');
+            const pelicula = document.getElementById('peli');
+            const puntua = document.getElementById('puntuacion');
+            const comentar = document.getElementById('comentario');
+            const reviewsList = document.getElementById('reviews');
+
+            formulario.addEventListener('submit', function (event) {
+                event.preventDefault();
+                limpiarErores();
+
+                const pelis = pelicula.value.trim();
+                const puntuacion = puntua.value;
+                const comentarios = comentar.value.trim();
+
+                let isValid = true;
+
+                if (pelis === '') {
+                    isValid = false;
+                    mostrarError(pelicula, 'Por favor, ingresa el título de la película.');
+
+                } else if (pelis.length > 30) {
+                    isValid = false;
+                    mostrarError(pelicula, 'El título de la película debe tener como máximo 30 caracteres.');
+                }
+
+                if (puntuacion === '') {
+                    isValid = false;
+                    mostrarError(puntua, 'Por favor, selecciona una puntuación.');
+                }
+
+                if (comentarios === '') {
+                    isValid = false;
+                    mostrarError(comentar, 'Por favor, Ingrese un comentario');
+                }
+
+                else if (comentarios.length < 10 || comentarios.length > 200) {
+                    isValid = false;
+                    mostrarError(comentar, 'El comentario debe tener entre 10 y 200 caracteres.')
+                }
+
+                if (isValid) {
+                    const l1 = document.createElement('li');
+                    l1.innerHTML = `<strong>Película:</strong> ${pelis}<br>`;
+                    const l2 = document.createElement('li');
+                    l2.innerHTML = `<strong>Puntuación:</strong> ${puntuacion}<br>`;
+                    const l3 = document.createElement('li');
+                    l3.innerHTML = `<strong>Comentario:</strong> ${comentarios}<br> <br>`;
+
+                    reviewsList.appendChild(l1);
+                    reviewsList.appendChild(l2);
+                    reviewsList.appendChild(l3);
+                    limpiarForm();
+                    pelicula.focus();
+                }
+            });
+
+            function mostrarError(input, message) {
+                input.classList.add('error');
+                const parrafo = document.createElement('p');
+                parrafo.classList.add('errormsj');
+                parrafo.innerText = message;
+                input.parentNode.insertBefore(parrafo, input.nextSibling);
+            }
+
+            function limpiarErores() {
+                const errorMessages = document.getElementsByClassName('errormsj');
+                while (errorMessages.length > 0) {
+                    errorMessages[0].parentNode.removeChild(errorMessages[0]);
+                }
+
+                pelicula.classList.remove('error');
+                puntua.classList.remove('error');
+                comentar.classList.remove('error');
+            }
+
+            function limpiarForm() {
+                pelicula.value = '';
+                puntua.value = '';
+                comentar.value = '';
+            }
+        });
+
+    </script>
+
+
+
+
+</body>
+
+</html>

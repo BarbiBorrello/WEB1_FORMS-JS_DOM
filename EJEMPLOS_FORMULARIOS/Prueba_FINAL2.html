@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Prueba 2</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1 PARCIAL2</title>
+
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Nunito:ital,wght@1,200&family=Roboto:ital,wght@0,300;1,100;1,300&display=swap"
@@ -10,28 +14,51 @@
 
     <style>
         body {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url("Fondo_cartelera.jpeg");
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
             font-family: Roboto;
         }
+
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 30px;
-            margin: 10px;
-            border: 5px solid blue;
+            justify-content: center;
+            align-items: center;
+            border: 5px solid black;
             border-radius: 15px;
-        }
+            width: 400px;
+            background-color: white;
+            gap: 5px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 10px 5px 5px black;
+            background-image: url("Fondo_cartelera2.jpeg");
+            background-color: #cccccc;
+            height: 500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+          
 
-        textarea {
-            border: 1px solid black;
-            border-radius: 0px 15px 0px 15px;
         }
 
         #errores {
             border: 1px solid red;
             padding: 5px;
             display: none;
+            border-radius: 10px;
         }
 
         #errores p {
@@ -41,9 +68,38 @@
         .error {
             border: 1px solid red;
         }
+
+        input:focus {
+            background-color:aquamarine;
+        }
+
+        li{
+           
+            border: 4 px solid black;
+            box-shadow: 10px 5px 5px black;
+            padding: 10px;
+            border-radius: 5px;
+
+        }
+
+        .titulo-formulario{
+
+            font-size: 40px;
+            font-weight: bolder;
+            text-decoration: overline;
+            color: white;
+
+        }
+
+        .titulos-label{
+            text-decoration: overline;
+
+        }
     </style>
 </head>
 <!--
+    Ejercicio a desarrollar. Entregar sitio web en forma adjunta.
+
 Crear un formulario que permita cargar reseñas de películas con los siguientes datos:
 Película (obligatorio, máximo 30 caracteres)
 Puntuación (obligatorio, solo se puede puntuar con 1, 2, 3, 4 o 5)
@@ -59,35 +115,37 @@ Hacer foco en el input de la película.
 -->
 
 <body>
-    <h1>Ejercicio Simulacro</h1>
+
+
 
     <!---------------------------------------FORMULARIO----------------------------------------------------->
-    <form onsubmit="return validar()" id="f_pelis">
+    <form onsubmit="return validar()" id="f_peli">
+
+        <span class="titulo-formulario">Reseñas de Peliculas</span>
 
 
         <!---------------------------------------Campo: NOMBRE ----------------------------------------------------->
 
-        <label for="f_pelicula">Pelicula</label>
+        <label for="f_pelicula"> <span class="titulos-label">Pelicula</span></label>
         <input id="f_pelicula" autofocus /> <!--FOCO PRIMER ELEMENTO-->
 
+        <!---------------------------------------Campo: PUNTAJE ----------------------------------------------------->
+        <label for="f_puntuacion"><span class="titulos-label">Puntuación</span></label>
+        <select id="f_puntuacion" name="f_puntuacion">
 
-        <!---------------------------------------Campo: CLASIFICACION ----------------------------------------------------->
-        <label for="f_puntaje">Calificacion</label>
-
-        <select name="f_puntaje" id="f_puntaje">
-
+            <option value="">Seleccione una puntuación</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
-
+   
         </select>
 
 
-        <!---------------------------------------Campo: COMENTARIOS ----------------------------------------------------->
-        <label for="f_comentario">Comentario</label>
-        <input id="f_comentario" />
+        <!---------------------------------------Campo: COMENTARIO ----------------------------------------------------->
+        <label for="f_comentario"><span class="titulos-label">Comentarios</span></label>
+        <textarea id="f_comentario" rows="3"></textarea>
 
         <!---------------------------------------Boton : ENVIAR ----------------------------------------------------->
         <button type="submit">Enviar</button>
@@ -95,11 +153,14 @@ Hacer foco en el input de la película.
         <!---------------------------------------ERRORES => LISTA DE ERRORES --------------------------------------->
         <div id="errores"> </div>
 
+
     </form>
     <!-------------------------------FIN DEL FORMULARIO-------------------------------------------------------->
 
     <!---------------------------------------MENSAJES => "pagina dice.... "------------------------------------>
     <div id="mensajes"> </div>
+
+    <ul id="resenia"></ul>
 
 
 
@@ -122,12 +183,11 @@ Hacer foco en el input de la película.
             let f_pelicula = document.querySelector("#f_pelicula");
             f_pelicula.classList.remove("error");
 
+            let f_puntuacion = document.querySelector("#f_puntuacion");
+            f_puntuacion.classList.remove("error");
 
             let f_comentario = document.querySelector("#f_comentario");
             f_comentario.classList.remove("error");
-
-            let f_puntaje = document.querySelector("#f_puntaje");
-            f_puntaje.classList.remove("error");
 
 
             let lta_errores = document.querySelector("#errores");
@@ -140,88 +200,75 @@ Hacer foco en el input de la película.
 
 
 
-            /*---------------------------------------Validacion: PELICULA ---------------------------------------------*/
+            /*---------------------------------------Validacion:  PELICULA ---------------------------------------------*/
 
             if (f_pelicula.value == "") {
                 f_pelicula.classList.add("error");
                 let p = document.createElement("p");
-                p.innerHTML = "Falta pelicula";
+                p.innerHTML = "Falta la pelicula";
                 lta_errores.appendChild(p);
                 hubo_error = true;
-
 
             } else if (f_pelicula.value.length > 30) {
                 f_pelicula.classList.add("error");
                 let p = document.createElement("p");
-                p.innerHTML = "Pelicula :Tiene mas de 30 caracteres";
+                p.innerHTML = "Pelicula: maximo 30 caracteres"
                 lta_errores.appendChild(p);
                 hubo_error = true;
-
-
             }
 
-            /*Prueba 41 caracteres : Harry Potter y la camara de los secretos*/
+            /* prueba 37 caracteres: Harry Potter y la piedra filosofal*/
 
-            /*---------------------------------------Validacion: CALIFICACION ---------------------------------------------*/
+            /*---------------------------------------Validacion: PUNTAJE ---------------------------------------------*/
 
-            if (f_puntaje.value >= 1 && f_puntaje.value <= 5) {
-
-                f_puntaje.classList.add("error");
+            if (f_puntuacion.value == "") {
+                f_puntuacion.classList.add("error");
                 let p = document.createElement("p");
-                p.innerHTML = "Falta calificacion";
+                p.innerHTML = "Puntaje Obligatorio";
                 lta_errores.appendChild(p);
-                hubo_error = true
-
+                hubo_error = true;
             }
-
-            /*---------------------------------------Validacion: COMENTARIOS ---------------------------------------------*/
-            if (f_comentario.value !== " " && f_comentario.value.length > 200) {
-                    f_comentario.classList.add("error");
-                    let p = document.createElement("p");
-                    p.innerHTML = "Comentarios: Caracteres maximos 200";
-                    lta_errores.appendChild(p);
-                    hubo_error = true;
-                } else if (f_comentario.value !== "" &&f_comentario.value.length < 10) {
-                    f_comentario.classList.add("error");
-                    let p = document.createElement("p");
-                    p.innerHTML = "Comentarios:Caracteres minimos 10";
-                    lta_errores.appendChild(p);
-                    hubo_error = true;
-                } 
-
-                /*Prueba  3 caracteres :  ok*/
-
+            /*---------------------------------------Validacion: COMENTARIO ---------------------------------------------*/
+          
+            if (f_comentario.value.length < 10) {
+                f_comentario.classList.add ("error");
+                let p = document.createElement("p");
+                p.innerHTML = "Comentario : minimo 10 caracteres";
+                lta_errores.appendChild(p);
+                hubo_error = true;      
+            } else if (f_comentario.value.length > 200){
+                f_comentario.classList.add ("error");
+                let p = document.createElement("p");
+                p.innerHTML = "Comentario :maximo 200 caracteres";
+                lta_errores.appendChild(p);
+                hubo_error = true;
+            }
 
             /*---------------------------------------MENSAJES: ERRORES Y CONFIRMACIONES ---------------------------------------------*/
 
 
             if (hubo_error) {// SI hubo error
                 lta_errores.style.display = "initial"; // el formulario vuelve a su estilo original
-                return false;
-                // no se envia
+                return false; // no se envia
             } else { // NO hubo error
-                let p = document.createElement("p"); // se crea un parrafo
-                if (f_pelicula != "" && f_puntaje == 1) { // hay pelicula y puntuacion
+                let p = document.createElement("li"); // se crea un parrafo
+                if (f_pelicula.value !== "" && f_puntuacion.value !== "" ) { // Si proveyó el email:
                     p.innerHTML =
-                        "La pelicula selecionada es :" + " " + f_pelicula.value;
-                        "Calificacion: " + " " + f_puntuacion.value;
+                        "Pelicula :" + " " + f_pelicula.value + "" + "//";
+                        "Puntaje :" + " " + f_puntuacion.value;
 
-
-                } else { // 
-                    p.innerHTML = // hay pelciula/ calificacion y comentario*/
-
-                        "La pelicula selecionada es :" + " " + f_pelicula.value;
-                        "Calificacion: " + " "+ f_puntuacion.value;
-                        "Comentario: " + " "+ f_comentario.value;
-
-
+                } else { // sino NO proveyo el email:
+                    p.innerHTML =
+                        "Pelicula :" + "" + f_pelicula.value;
+                        "Puntaje :" + " " + f_puntuacion.value;
+                        "Comentario : " + " " + f_comentario.value
 
                 }
 
                 /*---------------------------------------mensajes : AGREGAR EN LISTA DE MENSAJES ------------------------------------*/
 
                 lta_mensajes.appendChild(p);
-                document.forms["f_pelis"].reset(); // RESETEAR FORMULARIO: para nueva carga de datos
+                document.forms["f_peli"].reset(); // RESETEAR FORMULARIO: para nueva carga de datos
 
                 /*--------------------------------------- FOCUS: EN PRIMER ELEMENTO ------------------------------------*/
 
@@ -232,8 +279,10 @@ Hacer foco en el input de la película.
             return false;
         }
 
-
+    
     </script>
+
+
 </body>
 
 </html>
